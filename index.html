@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XEETOPIA</title>
+    <style>
+                                /* Intro  */
+       .intro{
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            height:100vh;
+            background:black;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            z-index:9999;
+            animation:introHide 2s forwards;
+        }
+        .intro h1{
+            color:red;
+            font-size:90px;
+            letter-spacing:6px;
+            animation:introAnim 1.8s forwards;
+        }
+        @keyframes introHide{
+            100%{
+                visibility:hidden;
+            }
+        }
+        @keyframes introAnim{
+            0%{
+                transform:scale(1.5);
+                opacity:1;
+            }
+            70%{
+                transform:scale(0.6);
+                opacity:1;
+            }
+            100%{
+                transform:scale(0);
+                opacity:0;
+            }
+        }
+
+                /* blur  */
+        .blur{
+            filter:blur(1px);
+            transition:0.1s;
+        }
+
+        /* curson glow */
+        .cursor-glow{
+            position:fixed;
+            top:0;
+            left:0;
+            width:180px;
+            height:180px;
+            background:radial-gradient(circle, rgba(255,0,0,0.35) 0%, transparent 70%);
+            pointer-events:none;
+            transform:translate(-50%,-50%);
+            z-index:999;
+            filter:blur(30px);
+        }
+
+                    /* HTML  */
+        html{
+            scroll-behavior:smooth;
+        }
+        body{
+            margin:0;
+            background:#0f0f0f;
+            color:white;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+
+        /* hamburger hidden on pc  */
+        .menu-toggle{
+            display:none;
+            font-size:26px;
+            cursor:pointer;
+        }
+        /* mobile hamburger */
+        @media (max-width:768px){
+            .menu-toggle{
+                display:block;
+                color:white;
+            }
+
+            .nav-links{
+                position:absolute;
+                top:60px;
+                right:0;
+                background:rgba(0,0,0,0.9);
+                width:100%;
+                flex-direction:column;
+                text-align:center;
+                gap:25px;
+                padding:20px 0;
+
+                transform:translateY(-120%);
+                transition:0.35s;
+            }
+
+            .nav-links.active{
+                transform:translateY(0);
+            }
+        }
+
+        /* mobile navbar fix  */
+        @media (max-width: 768px){
+            .navbar{
+                display:flex;
+                justify-content:space-between;
+                align-items:center;
+            }
+           
+            .logo{
+                display:block;
+                z-index:1100;
+                margin:0;
+            }
+            .menu-toggle{
+                display:block;
+                z-index:1100;
+                margin:0;
+            }
+        }
+
+        /* navbar */
+        .navbar{
+            position:fixed;
+            top:0;
+            left:0;
+            width:100%;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            padding:15px 60px;
+            background:rgba(0, 0, 0, 0.7);
+            backdrop-filter:blur(10px);
+            z-index:1000;
+            box-sizing:border-box;
+            max-width:100vw;
+        }
+        /* logo  */
+        .logo{
+            font-size:22px;
+            letter-spacing:2px;
+            font-weight:700;
+            color:white;
+            text-decoration:none;
+        }
+        .nav-links{
+            display:flex;
+            list-style:none;
+            gap:35px;
+            margin:0;
+            padding:0;
+            flex-wrap:nowrap;
+            white-space:nowrap;
+        }
+        .nav-links a{
+            position:relative;
+            text-decoration:none;
+            color:white;
+            font-size:14px;
+            position:relative;
+            transition:0.3s;
+        }
+        /* red undrline hover  */
+        .nav-links a::after{
+            content:"";
+            position:absolute;
+            left:0;
+            bottom:-5px;
+            width:0%;
+            height:2px;
+            background:red;
+            transition:0.3s;
+        }
+        .nav-links a:hover::after{
+            width:100%;
+        }
+        .nav-links a:hover{
+            color:red;
+        }
+
+        .hero{
+            min-height:100vh;
+            display:flex;
+            flex-direction:column;
+            justify-content:flex-start;
+            align-items:center;
+            text-align:center;
+            padding-top:120px;
+            background:linear-gradient(to bottom, #150000 0%, #000000 45%);
+        }
+        .hero h1{
+            font-size: clamp(60px,8vw,90px);
+            letter-spacing:4px;
+            font-weight:700;
+            color:white;
+            animation:FadeUp 1s ease;
+        }
+        .hero h1::after{
+            content:"";
+            display:block;
+            width:200px;
+            height:3px;
+            background:red;
+            margin:10px auto;
+        }
+        .hero p{
+            font-size:20px;
+            opacity:0.8;
+            margin-top:10px;
+            color:#cfcfcf;
+            animation:FadeUp 1.4s ease;
+        }
+        button{
+            margin-top:20px;
+            padding:12px 28px;
+            background:white;
+            color:black;
+            border:none;
+            border-radius:30px;
+            font-weight:600;
+            cursor:pointer;
+            transition:0.3s;
+        }
+        button:hover{
+            transform:scale(1.08);
+            box-shadow:0 0 18px red;
+        }
+
+        /* Social  */
+        .social{
+            padding:100px 40px;
+            text-align:center;
+        }
+        .social h2{
+            font-size:32px;
+            margin-bottom:40px;
+        }
+        .social-container{
+            display:flex;
+            justify-content:center;
+            gap:30px;
+            flex-wrap:wrap;
+        }
+        .social-container a{
+            padding:12px 28px;
+            border:1px solid #222;
+            border-radius:25px;
+            text-decoration:none;
+            color:white;
+            transition:0.3s;
+        }
+        .social-container a:hover{
+            background:red;
+            color:white;
+            border-color:red;
+            box-shadow:0 0 18px red;
+        }
+
+        /* Services */
+        .services{
+            padding:120px 40px;
+            text-align:center;
+        }
+        .services h2{
+            font-size:32px;
+            margin-bottom:50px;
+            letter-spacing:2px;
+        }
+        .service-container{
+            display:flex;
+            justify-content:center;
+            gap:30px;
+            flex-wrap:wrap;
+        }
+        .card{
+            width:220px;
+            height:130px;
+            background:#0a0a0a;
+            border:1px solid #222;
+            border-radius:12px;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:18px;
+            transition:0.3s;
+            cursor:pointer;
+        }
+        .card:hover{
+            transform:translateY(-8px) scale(1.03);
+            box-shadow:0 0 25px red;
+            border-color:red;
+        }
+
+
+
+    </style>
+</head>
+             <!-- BODY        BODY          BODY       BODY  -->
+<body>
+    <div class="intro">
+        <h1>XEETOPIA</h1>
+    </div>
+
+    <div class="cursor-glow"></div>
+
+    <!-- navbar  -->
+    <nav class="navbar">
+        <a href="#home" class="logo">XEET</a>
+        <div class="menu-toggle">☰</div>
+
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#social">Social</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#portfolios">Portfolios</a></li>
+            <li><a href="#contacts">Contacts</a></li>
+            <li><a href="#story">Story</a></li>
+        </ul>
+    </nav>
+    <section id="home" class="hero">
+        <h1>XEETOPIA</h1>
+        <p>Xeet's Creative World</p>
+        <button>Expore Xeetopia</button>
+    </section>
+    <!-- Social  -->
+     <section id="social" class="social">
+        <h2>Social</h2>
+
+        <div class="social-container">
+            <a href="https://www.youtube.com/@xeetplayz"
+            target="_blank">YouTube</a>
+            <a href="https://www.instagram.com/xeetedit"
+            target="_blank">Instagram</a>
+            <a href="https://www.facebook.com/XeetPlayz/"
+            target="_blank">Facebook</a>
+        </div>
+     </section>
+    <!-- services  -->
+     <section id="services" class="services">
+        <h2>Services</h2>
+
+        <div class="service-container">
+            <div class="card">Editing</div>
+            <div class="card">Web Development</div>
+            <div class="card">2D Animation</div>
+        </div>
+     </section>
+     <!-- script  -->
+     <script>
+        const glow =
+        document.querySelector(".cursor-glow");
+        document.addEventListener("mousemove", e => {
+            glow.style.left = e.clientX + "px";
+            glow.style.top = e.clientY + "px";
+        });
+     </script>
+
+     <!-- Hamburger mobile toggle  -->
+      <script>
+        const toggle =
+        document.querySelector(".menu-toggle");
+        const nav = document.querySelector(".nav-links");
+
+        toggle.onclick = () =>{
+            nav.classList.toggle("active");
+        }
+      </script>
+</body>
+</html>
