@@ -1,4 +1,5 @@
 ## Hi there 👋
+XEETOPIA is a Creative hub showcasing the journey of XEET. Providing some services like high quality video editing, motion graphics, animations, web development. Xeet is also a DIGITAL creator with the names of Xeetopia, Xeetplayz, Xeetedit on social media.
 
 <!--
 **xeetopia/xeetopia** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
