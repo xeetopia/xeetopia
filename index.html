@@ -220,7 +220,7 @@
             color:#cfcfcf;
             animation:FadeUp 1.4s ease;
         }
-        button{
+        .button{
             margin-top:20px;
             padding:12px 28px;
             background:white;
@@ -230,8 +230,9 @@
             font-weight:600;
             cursor:pointer;
             transition:0.3s;
+            text-decoration:none;
         }
-        button:hover{
+        .button:hover{
             transform:scale(1.08);
             box-shadow:0 0 18px red;
         }
@@ -289,6 +290,7 @@
             border:1px solid #222;
             border-radius:12px;
             display:flex;
+            flex-direction: column;
             align-items:center;
             justify-content:center;
             font-size:18px;
@@ -316,57 +318,6 @@
             box-shadow:0 0 8px red;
         }
 
-        /* portfolios  */
-        .portfolios{
-            padding:80px 20px;
-            text-align:center;
-        }
-
-    .portfolios h2{
-        text-align: center;
-        font-size:32px;
-        margin-bottom:40px;
-    }
-    .portfolio-container{
-        display:flex;
-        flex-wrap:wrap;
-        justify-content:center;
-        gap:20px;
-    }
-    
-    .card{
-        background:#111;
-        padding:25px;
-        border-radius:12px;
-        transition:0.3s;
-        display:flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 10px;
-    }
-    .card:hover{
-        transform:translateY(-6px);
-        box-shadow:0 0 20px rgba(255,0,0,0.3)
-    }
-    .card h3{
-        margin:0;
-        font-size:22px;
-    }
-    .card p{
-        margin:0;
-        font-size: 14px;
-        max-width:220px;
-        opacity:0.8;
-    }
-    .card button{
-        padding:8px 20px;
-        background:red;
-        border:none;
-        color:white;
-        border-radius:6px;
-        cursor:pointer;
-    }
 
     /* contacts */
 .contacts{
@@ -514,7 +465,6 @@
             <li><a href="#home">Home</a></li>
             <li><a href="#social">Social</a></li>
             <li><a href="#services">Services</a></li>
-            <li><a href="#portfolios">Portfolios</a></li>
             <li><a href="#contacts">Contacts</a></li>
             <li><a href="#story">Story</a></li>
         </ul>
@@ -522,7 +472,7 @@
     <section id="home" class="hero">
         <h1>XEETOPIA</h1>
         <p>Xeet's Creative World</p>
-        <a href="#social" class="story-btn">Explore Xeetopia</a>
+        <a href="#social" class="button">Explore Xeetopia</a>
     </section>
     <!-- Social  -->
      <section id="social" class="social">
@@ -545,7 +495,7 @@
 
         <div class="card">
         Editing <br>
-        <a href="working.html" class="card-btn">View</a>
+        <a href="xeet-studio-editing.html" class="card-btn">View</a>
         </div>
 
         <div class="card">
@@ -561,33 +511,6 @@
     </div>
     </section>
 
-
-     <!-- Portfolio  -->
-      <section id="portfolios" class="portfolios">
-        <h2>Portfolios</h2>
-
-        <div class="portfolio-container">
-
-            <div class="card">
-                <h3>Editing</h3>
-                <p>Short-form & long-form video edits</p>
-                <a href="working.html" class="card-btn">View</a>
-            </div>
-
-            <div class="card">
-                <h3>Motion Graphics</h3>
-                <p>Smooth text & icon animations</p>
-                <a href="working.html" class="card-btn">View</a>
-            </div>
-
-            <div class="card">
-                <h3>Web Development</h3>
-                <p>Creative website & UI designs</p>
-                <a href="working.html" class="card-btn">View</a>
-            </div>
-
-        </div>
-      </section>
 
             <!-- Contacts  -->
     <section id="contacts" class="contacts">

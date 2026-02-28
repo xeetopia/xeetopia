@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XEET STUDIO - Editing</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background: #000;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Red Cursor Glow */
+
+        .cursor-glow {
+            position: fixed;
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, rgba(255, 0, 0, 0.35) 0%, transparent 70%);
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 999;
+            filter: blur(40px);
+        }
+
+        /* Background Glow */
+
+        .bg {
+            position: fixed;
+            width: 100%;
+            height: 100vh;
+            background:
+                radial-gradient(circle at 20% 30%, rgba(255, 0, 0, 0.15), transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(255, 0, 0, 0.1), transparent 40%);
+            z-index: -1;
+        }
+
+        /* Navbar */
+
+        .navbar {
+            position: fixed;
+            width: 100%;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+        }
+
+        .logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 20px;
+            letter-spacing: 2px;
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+            font-size: 14px;
+            position: relative;
+            transition: 0.3s;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: red;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero */
+
+        .hero {
+            height: 70vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding-top: 100px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 60px;
+        }
+
+        .hero p {
+            margin-top: 10px;
+            opacity: 0.7;
+        }
+
+        .hero-btn {
+            margin-top: 30px;
+            padding: 12px 32px;
+            background: white;
+            color: black;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .hero-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 25px red;
+        }
+
+        section {
+            padding: 100px 80px;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 28px;
+        }
+
+        /* Shorts */
+
+        .short-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 20px;
+        }
+
+        .short-card {
+            aspect-ratio: 9/16;
+            background: #111;
+            border-radius: 12px;
+            border: 1px solid #222;
+            display: flex;
+            align-items: flex-end;
+            padding: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .short-card:hover {
+            border-color: red;
+            box-shadow: 0 0 15px red;
+            transform: translateY(-5px);
+        }
+
+        .view-more {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        /* Long */
+
+        .long-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .long-card {
+            aspect-ratio: 16/9;
+            background: #111;
+            border-radius: 12px;
+            border: 1px solid #222;
+            padding: 15px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .long-card:hover {
+            border-color: red;
+            box-shadow: 0 0 15px red;
+            transform: translateY(-5px);
+        }
+
+        /* Contact */
+
+        #contact {
+            padding: 120px 80px;
+            text-align: center;
+        }
+
+        .contact-box {
+            margin-top: 30px;
+            font-size: 16px;
+            opacity: 0.8;
+        }
+
+        .contact-box a {
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px solid red;
+        }
+
+        .contact-box a:hover {
+            color: red;
+        }
+
+        /* Mobile */
+
+        @media (max-width: 900px) {
+
+            section {
+                padding: 80px 20px;
+            }
+
+            .short-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .long-grid {
+                grid-template-columns: 1fr;
+            }
+
+            #contact {
+                padding: 80px 20px;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="bg"></div>
+    <div class="cursor-glow"></div>
+    <div id="top"></div>
+
+    <nav class="navbar">
+
+        <a href="index.html" class="logo">XEETOPIA</a>
+
+        <div class="nav-links">
+            <a href="#top">Home</a>
+            <a href="xeet-editing-portfolio.html">Portfolio</a>
+            <a href="#contact">Contact</a>
+        </div>
+
+    </nav>
+
+    <div class="hero">
+        <h1>XEET STUDIO</h1>
+        <p>Professional Editing Showcase</p>
+        <a href="#shorts" class="hero-btn">View Works</a>
+    </div>
+
+    <section id="shorts">
+
+        <h2>Short Form Works</h2>
+
+        <div class="short-grid">
+
+            <div class="short-card" onclick="openVideo('short1')">Short 1</div>
+            <div class="short-card" onclick="openVideo('short2')">Short 2</div>
+            <div class="short-card" onclick="openVideo('short3')">Short 3</div>
+            <div class="short-card" onclick="openVideo('short4')">Short 4</div>
+            <div class="short-card" onclick="openVideo('short5')">Short 5</div>
+
+            <div class="short-card view-more" onclick="location.href='xeet-editing-portfolio.html'">
+                View More
+            </div>
+
+        </div>
+
+    </section>
+
+    <section id="longs">
+
+        <h2>Long Form Works</h2>
+
+        <div class="long-grid">
+
+            <div class="long-card" onclick="openVideo('long1')">Long Video 1</div>
+            <div class="long-card" onclick="openVideo('long2')">Long Video 2</div>
+            <div class="long-card" onclick="openVideo('long3')">Long Video 3</div>
+
+            <div class="long-card view-more" onclick="location.href='xeet-editing-portfolio.html'">
+                View More
+            </div>
+
+        </div>
+
+    </section>
+
+    <section id="contact">
+
+        <h2>Contact</h2>
+
+        <div class="contact-box">
+            <p>Instagram: <a href="https://instagram.com/xeetedit" target="_blank">@xeetedit</a></p>
+            <p>Email: <a href="mailto:goxeet@gmail.com">goxeet@gmail.com</a></p>
+        </div>
+
+    </section>
+
+    <script>
+
+        const glow = document.querySelector(".cursor-glow");
+
+        document.addEventListener("mousemove", e => {
+            glow.style.left = e.clientX + "px";
+            glow.style.top = e.clientY + "px";
+        });
+
+        function openVideo(id) {
+            window.location.href = "xeet-editing-portfolio.html?video=" + id;
+        }
+
+    </script>
+
+</body>
+
+</html>
