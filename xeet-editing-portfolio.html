@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XEET Editing Portfolio</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:'Inter',sans-serif;
+        }
+
+        body{
+            background:#000;
+            color:white;
+            overflow-x:hidden;
+        }
+
+        html{
+            scroll-behavior:smooth;
+        }
+
+        .cursor-glow{
+            position:fixed;
+            width:180px;
+            height:180px;
+            background: radial-gradient(circle, rgba(255,0,0,0.35) 0%, transparent 70%);
+            pointer-events:none;
+            transform:translate(-50%,-50%);
+            z-index:999;
+            filter:blur(40px);
+        }
+
+        .bg{
+            position:fixed;
+            width:100%;
+            height:100vh;
+            background:
+                radial-gradient(circle at 20% 30%,rgba(255,0,0,0.15),transparent 40%),
+                radial-gradient(circle at 80% 70%,rgba(255,0,0,0.1),transparent 40%);
+            z-index:-1;
+        }
+
+        .navbar{
+            position:fixed;
+            width:100%;
+            padding:20px 60px;
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            background:rgba(0,0,0,0.6);
+            backdrop-filter:blur(12px);
+            z-index:1000;
+        }
+
+        .logo{
+            font-family:'Orbitron',sans-serif;
+            font-size:20px;
+            letter-spacing:2px;
+            text-decoration:none;
+            color:white;
+        }
+
+        .back-btn{
+            text-decoration:none;
+            color:white;
+            font-size:14px;
+            border-bottom:1px solid red;
+        }
+
+        .player-section{
+            padding:150px 80px 80px 80px;
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:50px;
+            align-items:center;
+        }
+
+        .video-box iframe{
+            width:100%;
+            height:420px;
+            border-radius:12px;
+        }
+
+        .video-info h2{
+            font-size:28px;
+            margin-bottom:20px;
+        }
+
+        .video-info p{
+            opacity:0.7;
+            line-height:1.6;
+        }
+
+        section{
+            padding:80px 80px;
+        }
+
+        h3{
+            text-align:center;
+            margin-bottom:40px;
+            font-size:24px;
+        }
+
+        .short-grid{
+            display:grid;
+            grid-template-columns:repeat(6,1fr);
+            gap:20px;
+        }
+
+        .long-grid{
+            display:grid;
+            grid-template-columns:repeat(2,1fr);
+            gap:30px;
+            margin-top:60px;
+        }
+
+        .card{
+            background:#111;
+            border-radius:12px;
+            border:1px solid #222;
+            padding:15px;
+            cursor:pointer;
+            transition:0.3s;
+            display:flex;
+            align-items:flex-end;
+            justify-content:center;
+            text-align:center;
+        }
+
+        .card:hover{
+            border-color:red;
+            box-shadow:0 0 15px red;
+            transform:translateY(-5px);
+        }
+
+        .short{
+            aspect-ratio:9/16;
+        }
+
+        .long{
+            aspect-ratio:16/9;
+        }
+
+        .hidden{
+            display:none;
+        }
+
+        .expand-btn{
+            background:#111;
+            border:1px solid #222;
+            border-radius:12px;
+            padding:15px;
+            cursor:pointer;
+            transition:0.3s;
+            text-align:center;
+        }
+
+        .expand-btn:hover{
+            border-color:red;
+            box-shadow:0 0 15px red;
+        }
+
+        @media(max-width:900px){
+
+            .player-section{
+                grid-template-columns:1fr;
+                padding:120px 20px 60px 20px;
+            }
+
+            .video-box iframe{
+                height:260px;
+            }
+
+            section{
+                padding:60px 20px;
+            }
+
+            .short-grid{
+                grid-template-columns:repeat(3,1fr);
+            }
+
+            .long-grid{
+                grid-template-columns:1fr;
+            }
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="bg"></div>
+    <div class="cursor-glow"></div>
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">XEETOPIA</a>
+        <a href="xeet-studio-editing.html" class="back-btn">← Back</a>
+    </nav>
+
+    <div class="player-section" id="playerSection">
+
+        <div class="video-box">
+            <iframe id="videoFrame" src="" frameborder="0" allowfullscreen></iframe>
+        </div>
+
+        <div class="video-info">
+            <h2 id="videoTitle"></h2>
+            <p id="videoDesc"></p>
+        </div>
+
+    </div>
+
+    <!-- SHORTS -->
+
+    <section>
+
+        <h3>Short Form Works</h3>
+
+        <div class="short-grid">
+
+            <div class="card short" onclick="loadVideo('short1')">Short 1</div>
+            <div class="card short" onclick="loadVideo('short2')">Short 2</div>
+            <div class="card short" onclick="loadVideo('short3')">Short 3</div>
+            <div class="card short" onclick="loadVideo('short4')">Short 4</div>
+            <div class="card short" onclick="loadVideo('short5')">Short 5</div>
+
+            <div class="expand-btn short" id="viewMoreShort" onclick="expandShorts()">View More</div>
+
+            <div class="card short hidden extra-short" onclick="loadVideo('short6')">Short 6</div>
+            <div class="card short hidden extra-short" onclick="loadVideo('short7')">Short 7</div>
+            <div class="card short hidden extra-short" onclick="loadVideo('short8')">Short 8</div>
+
+            <div class="expand-btn short hidden" id="viewLessShort" onclick="collapseShorts()">View Less</div>
+
+        </div>
+
+    </section>
+
+    <!-- LONG VIDEOS -->
+
+    <section>
+
+        <h3>Long Form Works</h3>
+
+        <div class="long-grid">
+
+            <div class="card long" onclick="loadVideo('long1')">Long Video 1</div>
+            <div class="card long" onclick="loadVideo('long2')">Long Video 2</div>
+            <div class="card long" onclick="loadVideo('long3')">Long Video 3</div>
+
+            <div class="expand-btn long" id="viewMoreLong" onclick="expandLong()">View More</div>
+
+            <div class="card long hidden extra-long" onclick="loadVideo('long4')">Long Video 4</div>
+            <div class="card long hidden extra-long" onclick="loadVideo('long5')">Long Video 5</div>
+
+            <div class="expand-btn long hidden" id="viewLessLong" onclick="collapseLong()">View Less</div>
+
+        </div>
+
+    </section>
+
+    <script>
+
+        const glow=document.querySelector(".cursor-glow");
+
+        document.addEventListener("mousemove",e=>{
+            glow.style.left=e.clientX+"px";
+            glow.style.top=e.clientY+"px";
+        });
+
+        function expandShorts(){
+            document.querySelectorAll(".extra-short").forEach(el=>el.classList.remove("hidden"));
+            document.getElementById("viewMoreShort").classList.add("hidden");
+            document.getElementById("viewLessShort").classList.remove("hidden");
+        }
+
+        function collapseShorts(){
+            document.querySelectorAll(".extra-short").forEach(el=>el.classList.add("hidden"));
+            document.getElementById("viewMoreShort").classList.remove("hidden");
+            document.getElementById("viewLessShort").classList.add("hidden");
+        }
+
+        function expandLong(){
+            document.querySelectorAll(".extra-long").forEach(el=>el.classList.remove("hidden"));
+            document.getElementById("viewMoreLong").classList.add("hidden");
+            document.getElementById("viewLessLong").classList.remove("hidden");
+        }
+
+        function collapseLong(){
+            document.querySelectorAll(".extra-long").forEach(el=>el.classList.add("hidden"));
+            document.getElementById("viewMoreLong").classList.remove("hidden");
+            document.getElementById("viewLessLong").classList.add("hidden");
+        }
+
+        const videos={
+            short1:{title:"Short 1",desc:"Short editing showcase.",url:"https://www.youtube.com/embed/YOUR_ID"},
+            short2:{title:"Short 2",desc:"Short editing showcase.",url:"https://www.youtube.com/embed/YOUR_ID"},
+            long1:{title:"Long 1",desc:"Long form project.",url:"https://www.youtube.com/embed/YOUR_ID"},
+            long2:{title:"Long 2",desc:"Long form project.",url:"https://www.youtube.com/embed/YOUR_ID"},
+            long3:{title:"Long 3",desc:"Long form project.",url:"https://www.youtube.com/embed/YOUR_ID"}
+        };
+
+        function loadVideo(id){
+
+            if(videos[id]){
+                document.getElementById("videoFrame").src=videos[id].url;
+                document.getElementById("videoTitle").innerText=videos[id].title;
+                document.getElementById("videoDesc").innerText=videos[id].desc;
+                document.getElementById("playerSection").style.display="grid";
+                window.scrollTo({top:0,behavior:"smooth"});
+            }
+
+        }
+
+        const params=new URLSearchParams(window.location.search);
+        const videoId=params.get("video");
+
+        if(videoId && videos[videoId]){
+            loadVideo(videoId);
+        }else{
+            document.getElementById("playerSection").style.display="none";
+        }
+
+    </script>
+
+</body>
+</html>
