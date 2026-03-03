@@ -1,336 +1,997 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XEET Editing Portfolio</title>
-
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>EDITING PORTFOLIO · XEET</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-
-        *{
-            margin:0;
-            padding:0;
-            box-sizing:border-box;
-            font-family:'Inter',sans-serif;
+        /* ===== XEET PORTFOLIO - ULTIMATE EDITION ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
-        body{
-            background:#000;
-            color:white;
-            overflow-x:hidden;
+        /* AMOLED black / red - PREMIUM PALETTE */
+        :root {
+            --primary: #ff2a2a;
+            --primary-light: #ff5e5e;
+            --primary-glow: #ff2a2a80;
+            --primary-intense: #ff0000;
+            --dark-bg: #000000;
+            --card-bg: #0b0b0b;
+            --border-dim: #222222;
+            --text-light: #cccccc;
         }
 
-        html{
-            scroll-behavior:smooth;
+        body {
+            background-color: #000000;
+            color: #eeeeee;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
-        .cursor-glow{
-            position:fixed;
-            width:180px;
-            height:180px;
-            background: radial-gradient(circle, rgba(255,0,0,0.35) 0%, transparent 70%);
-            pointer-events:none;
-            transform:translate(-50%,-50%);
-            z-index:999;
-            filter:blur(40px);
+        /* ===== ULTIMATE ANIMATION LIBRARY ===== */
+        @keyframes flicker {
+            0% { opacity: 0.9; text-shadow: 0 0 5px var(--primary); }
+            50% { opacity: 1; text-shadow: 0 0 15px var(--primary), 0 0 30px var(--primary-intense); }
+            100% { opacity: 0.9; text-shadow: 0 0 5px var(--primary); }
         }
 
-        .bg{
-            position:fixed;
-            width:100%;
-            height:100vh;
-            background:
-                radial-gradient(circle at 20% 30%,rgba(255,0,0,0.15),transparent 40%),
-                radial-gradient(circle at 80% 70%,rgba(255,0,0,0.1),transparent 40%);
-            z-index:-1;
+        @keyframes borderPulse {
+            0% { border-color: #ff2a2a20; box-shadow: 0 0 5px #ff2a2a20; }
+            50% { border-color: var(--primary); box-shadow: 0 0 25px var(--primary-glow); }
+            100% { border-color: #ff2a2a20; box-shadow: 0 0 5px #ff2a2a20; }
         }
 
-        .navbar{
-            position:fixed;
-            width:100%;
-            padding:20px 60px;
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            background:rgba(0,0,0,0.6);
-            backdrop-filter:blur(12px);
-            z-index:1000;
+        /* PLAYFUL ANIMATIONS */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
         }
 
-        .logo{
-            font-family:'Orbitron',sans-serif;
-            font-size:20px;
-            letter-spacing:2px;
-            text-decoration:none;
-            color:white;
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            35% { transform: scale(1); }
+            45% { transform: scale(1.05); }
+            55% { transform: scale(1); }
         }
 
-        .back-btn{
-            text-decoration:none;
-            color:white;
-            font-size:14px;
-            border-bottom:1px solid red;
+        @keyframes shimmer {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
         }
 
-        .player-section{
-            padding:150px 80px 80px 80px;
-            display:grid;
-            grid-template-columns:1fr 1fr;
-            gap:50px;
-            align-items:center;
+        @keyframes glitch {
+            0% { transform: skew(0deg, 0deg); opacity: 1; }
+            20% { transform: skew(2deg, 1deg); opacity: 0.9; text-shadow: 2px 0 red, -2px 0 blue; }
+            40% { transform: skew(-2deg, -1deg); opacity: 0.9; text-shadow: -2px 0 red, 2px 0 blue; }
+            60% { transform: skew(0deg, 0deg); opacity: 1; }
+            100% { transform: skew(0deg, 0deg); opacity: 1; }
         }
 
-        .video-box iframe{
-            width:100%;
-            height:420px;
-            border-radius:12px;
+        @keyframes spinSlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
-        .video-info h2{
-            font-size:28px;
-            margin-bottom:20px;
+        @keyframes ripple {
+            0% { box-shadow: 0 0 0 0 var(--primary-glow); }
+            50% { box-shadow: 0 0 0 15px var(--primary-glow); }
+            100% { box-shadow: 0 0 0 0 var(--primary-glow); }
         }
 
-        .video-info p{
-            opacity:0.7;
-            line-height:1.6;
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 20px var(--primary-glow); }
+            50% { box-shadow: 0 0 50px var(--primary), 0 0 0 3px rgba(255,42,42,0.3); }
+            100% { box-shadow: 0 0 20px var(--primary-glow); }
         }
 
-        section{
-            padding:80px 80px;
+        /* ===== CURSOR GLOW ===== */
+        .cursor-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: min(280px, 40vw);
+            height: min(280px, 40vw);
+            background: radial-gradient(circle, rgba(255, 42, 42, 0.35) 0%, transparent 70%);
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 999;
+            filter: blur(45px);
+            mix-blend-mode: screen;
+            will-change: transform;
         }
 
-        h3{
-            text-align:center;
-            margin-bottom:40px;
-            font-size:24px;
-        }
-
-        .short-grid{
-            display:grid;
-            grid-template-columns:repeat(6,1fr);
-            gap:20px;
-        }
-
-        .long-grid{
-            display:grid;
-            grid-template-columns:repeat(2,1fr);
-            gap:30px;
-            margin-top:60px;
-        }
-
-        .card{
-            background:#111;
-            border-radius:12px;
-            border:1px solid #222;
-            padding:15px;
-            cursor:pointer;
-            transition:0.3s;
-            display:flex;
-            align-items:flex-end;
-            justify-content:center;
-            text-align:center;
-        }
-
-        .card:hover{
-            border-color:red;
-            box-shadow:0 0 15px red;
-            transform:translateY(-5px);
-        }
-
-        .short{
-            aspect-ratio:9/16;
-        }
-
-        .long{
-            aspect-ratio:16/9;
-        }
-
-        .hidden{
-            display:none;
-        }
-
-        .expand-btn{
-            background:#111;
-            border:1px solid #222;
-            border-radius:12px;
-            padding:15px;
-            cursor:pointer;
-            transition:0.3s;
-            text-align:center;
-        }
-
-        .expand-btn:hover{
-            border-color:red;
-            box-shadow:0 0 15px red;
-        }
-
-        @media(max-width:900px){
-
-            .player-section{
-                grid-template-columns:1fr;
-                padding:120px 20px 60px 20px;
-            }
-
-            .video-box iframe{
-                height:260px;
-            }
-
-            section{
-                padding:60px 20px;
-            }
-
-            .short-grid{
-                grid-template-columns:repeat(3,1fr);
-            }
-
-            .long-grid{
-                grid-template-columns:1fr;
+        @media (max-width: 768px) {
+            .cursor-glow {
+                width: 200px;
+                height: 200px;
+                opacity: 0.4;
+                filter: blur(35px);
             }
         }
 
+        /* ===== NAVBAR - GLASS ELITE ===== */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--primary-glow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 5px 30px rgba(255, 42, 42, 0.15);
+        }
+
+        .logo a {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: 4px;
+            text-decoration: none;
+            color: white;
+            animation: flicker 4s infinite, float 6s infinite;
+            border: 1px solid var(--primary-glow);
+            padding: 0.2rem 1rem;
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .logo a::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 42, 42, 0.2), transparent);
+            transform: rotate(45deg);
+            animation: shimmer 3s infinite;
+        }
+
+        .logo a:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 30px var(--primary);
+            transform: scale(1.05);
+        }
+
+        /* ===== BACK BUTTON - PREMIUM ===== */
+        .back-btn {
+            background: linear-gradient(135deg, rgba(255,42,42,0.1), rgba(0,0,0,0.5));
+            border: 2px solid var(--primary-glow);
+            color: white;
+            padding: 0.7rem 2.2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border-radius: 40px;
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            position: relative;
+            overflow: hidden;
+            letter-spacing: 1px;
+        }
+
+        .back-btn i {
+            color: var(--primary);
+            transition: transform 0.3s;
+        }
+
+        .back-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .back-btn:hover {
+            background: var(--primary);
+            border-color: white;
+            box-shadow: 0 0 40px var(--primary), 0 0 0 3px rgba(255,42,42,0.3);
+            transform: scale(1.08) translateY(-3px);
+            color: black;
+            animation: heartbeat 1s;
+        }
+
+        .back-btn:hover i {
+            color: black;
+            transform: translateX(-5px) rotate(10deg);
+        }
+
+        .back-btn:hover::before {
+            left: 100%;
+        }
+
+        /* ===== PLAYER SECTION - ULTRA PREMIUM ===== */
+        .player-section {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 2.5rem 5%;
+            gap: 2rem;
+            border-bottom: 1px solid var(--primary-glow);
+            background: radial-gradient(circle at 70% 30%, #2a0000, #000000 80%);
+            scroll-margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .player-section::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,42,42,0.1) 0%, transparent 50%);
+            animation: spinSlow 20s linear infinite;
+        }
+
+        .video-player-area {
+            flex: 1 1 500px;
+            min-width: 300px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: linear-gradient(145deg, #0f0f0f, #050505);
+            border: 2px solid var(--primary-glow);
+            border-radius: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            box-shadow: 0 0 40px var(--primary-glow);
+            transition: all 0.3s;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .video-placeholder::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,42,42,0.2), transparent 70%);
+            opacity: 0.3;
+            animation: spinSlow 15s linear infinite;
+        }
+
+        .video-placeholder iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            position: relative;
+            z-index: 2;
+        }
+
+        .video-placeholder i {
+            font-size: 5rem;
+            color: var(--primary-glow);
+            z-index: 2;
+        }
+
+        .video-placeholder span {
+            background: var(--primary);
+            color: black;
+            padding: 0.3rem 1.5rem;
+            border-radius: 40px;
+            font-weight: bold;
+            z-index: 2;
+            box-shadow: 0 0 20px var(--primary);
+        }
+
+        .video-info {
+            flex: 1 1 300px;
+            background: rgba(10,10,10,0.8);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            padding: 2rem;
+            border-radius: 40px;
+            border: 1px solid var(--primary-glow);
+            box-shadow: 0 20px 40px -20px black, 0 0 30px var(--primary-glow);
+            position: relative;
+            z-index: 2;
+            transition: transform 0.3s;
+        }
+
+        .video-info:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 0 50px var(--primary-glow);
+        }
+
+        .video-info h2 {
+            font-size: 2.5rem;
+            border-left: 6px solid var(--primary);
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+            animation: float 5s infinite;
+        }
+
+        .video-info .meta {
+            color: #aaa;
+            margin: 1.5rem 0;
+            font-style: italic;
+        }
+
+        .video-info .desc {
+            color: #ccc;
+            line-height: 1.7;
+            border-top: 1px dashed var(--primary-glow);
+            padding-top: 1.5rem;
+        }
+
+        /* ===== SECTION TITLES ===== */
+        .section {
+            padding: 3rem 5%;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            border-left: 6px solid var(--primary);
+            padding-left: 1rem;
+            animation: float 4s infinite;
+        }
+
+        /* ===== VIDEO CARDS - ULTRA PREMIUM ===== */
+        .shorts-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            padding-bottom: 1rem;
+        }
+
+        .short-card {
+            width: 200px;
+            height: 360px;
+            background: linear-gradient(145deg, #0c0c0c, #121212);
+            border: 1px solid var(--primary-glow);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            cursor: pointer;
+            flex: 0 0 auto;
+            box-shadow: 0 15px 30px -15px black;
+            position: relative;
+        }
+
+        .short-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,42,42,0.1), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s;
+            transform: rotate(30deg);
+            pointer-events: none;
+        }
+
+        .short-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-12px) scale(1.03);
+            box-shadow: 0 30px 50px var(--primary-glow), 0 0 0 2px rgba(255,42,42,0.5);
+            animation: pulseGlow 2s infinite;
+        }
+
+        .short-card:hover::before {
+            opacity: 1;
+            animation: spinSlow 10s linear infinite;
+        }
+
+        .thumbnail {
+            width: 100%;
+            height: 75%;
+            background: linear-gradient(145deg, #0f0f0f, #050505);
+            overflow: hidden;
+            border-bottom: 2px solid var(--primary-glow);
+            position: relative;
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .video-card:hover .thumbnail img {
+            transform: scale(1.15) rotate(1deg);
+        }
+
+        .card-label {
+            padding: 1rem;
+            font-weight: 600;
+            color: #ddd;
+            text-align: center;
+            font-size: 0.95rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ===== SEE MORE/LESS CARDS - ENHANCED ===== */
+        .see-more-card, .see-less-card {
+            background: linear-gradient(145deg, #070707, #0f0f0f);
+            border: 2px dashed var(--primary-glow);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 0.6rem;
+            color: var(--primary);
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .see-less-card {
+            color: white;
+            border-color: var(--primary);
+        }
+
+        .see-more-card i, .see-less-card i {
+            font-size: 2.2rem;
+            transition: transform 0.4s;
+        }
+
+        .see-more-card::before, .see-less-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,42,42,0.3), transparent);
+            transition: left 0.5s;
+        }
+
+        .see-more-card:hover, .see-less-card:hover {
+            background: #1a0000;
+            border-color: var(--primary);
+            transform: translateY(-12px) scale(1.03);
+            box-shadow: 0 0 40px var(--primary);
+            animation: ripple 1.5s infinite;
+        }
+
+        .see-more-card:hover i {
+            transform: rotate(180deg) scale(1.2);
+            color: var(--primary);
+        }
+
+        .see-less-card:hover i {
+            transform: rotate(-180deg) scale(1.2);
+        }
+
+        .see-more-card:hover::before, .see-less-card:hover::before {
+            left: 100%;
+        }
+
+        /* ===== LONG GRIDS ===== */
+        .long-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .long-card {
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: linear-gradient(145deg, #0c0c0c, #121212);
+            border: 1px solid var(--primary-glow);
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            position: relative;
+            box-shadow: 0 15px 30px -15px black;
+        }
+
+        .long-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,42,42,0.1), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s;
+            transform: rotate(30deg);
+            pointer-events: none;
+        }
+
+        .long-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-12px) scale(1.02);
+            box-shadow: 0 30px 50px var(--primary-glow), 0 0 0 2px rgba(255,42,42,0.5);
+        }
+
+        .long-card:hover::before {
+            opacity: 1;
+            animation: spinSlow 10s linear infinite;
+        }
+
+        .long-card .thumbnail {
+            height: 70%;
+        }
+
+        .extra-shorts {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.2rem;
+            margin-top: 1rem;
+            width: 100%;
+        }
+
+        .extra-longs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        /* ===== PLAYER HIGHLIGHT ===== */
+        .player-highlight {
+            animation: playerPulse 1s ease;
+        }
+
+        @keyframes playerPulse {
+            0% { box-shadow: 0 0 0 0 var(--primary-glow); }
+            50% { box-shadow: 0 0 0 30px var(--primary-glow); }
+            100% { box-shadow: 0 0 0 0 var(--primary-glow); }
+        }
+
+        /* ===== MOBILE OPTIMIZATION ===== */
+        @media (max-width: 700px) {
+            .player-section {
+                flex-direction: column;
+            }
+            .shorts-grid {
+                justify-content: center;
+            }
+            .short-card {
+                width: 160px;
+                height: 280px;
+            }
+            .long-grid, .extra-longs {
+                grid-template-columns: 1fr;
+            }
+            .long-second-line {
+                grid-template-columns: 1fr !important;
+            }
+            .back-btn {
+                padding: 0.5rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .short-card {
+                width: 140px;
+                height: 250px;
+            }
+            .video-info h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* REMOVED footer text */
     </style>
-
 </head>
-
 <body>
-
-    <div class="bg"></div>
+    <!-- CURSOR GLOW - ADDED -->
     <div class="cursor-glow"></div>
 
+    <!-- navbar -->
     <nav class="navbar">
-        <a href="index.html" class="logo">XEETOPIA</a>
-        <a href="xeet-studio-editing.html" class="back-btn">← Back</a>
+        <div class="logo">
+            <a href="index.html">XEETOPIA</a>
+        </div>
+        <button class="back-btn" id="backBtn"><i class="fas fa-arrow-left"></i> BACK</button>
     </nav>
 
+    <!-- player + info -->
     <div class="player-section" id="playerSection">
-
-        <div class="video-box">
-            <iframe id="videoFrame" src="" frameborder="0" allowfullscreen></iframe>
+        <div class="video-player-area">
+            <div class="video-placeholder" id="videoPlayer">
+                <i class="fas fa-play-circle"></i>
+                <span>XEET SHORT</span>
+                <small style="color:#aaa;">click any video to play</small>
+            </div>
         </div>
-
-        <div class="video-info">
-            <h2 id="videoTitle"></h2>
-            <p id="videoDesc"></p>
+        <div class="video-info" id="videoInfo">
+            <h2 id="videoTitle">xeet studio</h2>
+            <div class="meta" id="videoMeta">4k cinematic · 0:23</div>
+            <div class="desc" id="videoDesc">
+                Click any video to play.<br>
+                <span style="color:#ff2a2a;">#xeetstudio</span>
+            </div>
         </div>
-
     </div>
 
-    <!-- SHORTS -->
-
-    <section>
-
-        <h3>Short Form Works</h3>
-
-        <div class="short-grid">
-
-            <div class="card short" onclick="loadVideo('short1')">Short 1</div>
-            <div class="card short" onclick="loadVideo('short2')">Short 2</div>
-            <div class="card short" onclick="loadVideo('short3')">Short 3</div>
-            <div class="card short" onclick="loadVideo('short4')">Short 4</div>
-            <div class="card short" onclick="loadVideo('short5')">Short 5</div>
-
-            <div class="expand-btn short" id="viewMoreShort" onclick="expandShorts()">View More</div>
-
-            <div class="card short hidden extra-short" onclick="loadVideo('short6')">Short 6</div>
-            <div class="card short hidden extra-short" onclick="loadVideo('short7')">Short 7</div>
-            <div class="card short hidden extra-short" onclick="loadVideo('short8')">Short 8</div>
-
-            <div class="expand-btn short hidden" id="viewLessShort" onclick="collapseShorts()">View Less</div>
-
+    <!-- SHORT FORM SECTION -->
+    <section class="section" id="shortSection">
+        <h2 class="section-title"><i class="fas fa-film" style="margin-right: 10px; color: var(--primary);"></i> SHORT FORM VIDEOS</h2>
+        <div class="shorts-grid" id="shortGrid">
+            <!-- Short #1 -->
+            <div class="short-card video-card" data-video-id="D6oOaJIY9NY" data-title="neon dreams" data-meta="reel · 0:18" data-desc="Neon soaked edit with glitch effects. Shot on FX3.">
+                <div class="thumbnail">
+                    <img src="https://img.youtube.com/vi/D6oOaJIY9NY/hqdefault.jpg" alt="thumbnail">
+                </div>
+                <div class="card-label">neon dreams</div>
+            </div>
+            
+            <!-- Short #2 -->
+            <div class="short-card video-card" data-video-id="D6oOaJIY9NY" data-title="cyber pulse" data-meta="vfx · 0:22" data-desc="Fast paced transitions, color grade in davinci.">
+                <div class="thumbnail">
+                    <img src="https://img.youtube.com/vi/D6oOaJIY9NY/hqdefault.jpg" alt="thumbnail">
+                </div>
+                <div class="card-label">cyber pulse</div>
+            </div>
+            
+            <!-- Short #3 -->
+            <div class="short-card video-card" data-video-id="D6oOaJIY9NY" data-title="red district" data-meta="cinematic · 0:28" data-desc="Dark alley ambience with red accents.">
+                <div class="thumbnail">
+                    <img src="https://img.youtube.com/vi/D6oOaJIY9NY/hqdefault.jpg" alt="thumbnail">
+                </div>
+                <div class="card-label">red district</div>
+            </div>
+            
+            <!-- Short #4 -->
+            <div class="short-card video-card" data-video-id="D6oOaJIY9NY" data-title="xeet intro" data-meta="motion · 0:12" data-desc="3D logo reveal with particles.">
+                <div class="thumbnail">
+                    <img src="https://img.youtube.com/vi/D6oOaJIY9NY/hqdefault.jpg" alt="thumbnail">
+                </div>
+                <div class="card-label">xeet intro</div>
+            </div>
+            
+            <!-- Short #5 -->
+            <div class="short-card video-card" data-video-id="D6oOaJIY9NY" data-title="blade runner" data-meta="edit · 0:32" data-desc="Ambient sci-fi edit with overlay.">
+                <div class="thumbnail">
+                    <img src="https://img.youtube.com/vi/D6oOaJIY9NY/hqdefault.jpg" alt="thumbnail">
+                </div>
+                <div class="card-label">blade runner</div>
+            </div>
+            
+            <!-- see more card -->
+            <div class="short-card see-more-card" id="shortSeeMore">
+                <i class="fas fa-plus-circle"></i>
+                <span>SEE MORE</span>
+                <small style="font-size:0.7rem;">+5 shorts</small>
+            </div>
         </div>
-
+        
+        <!-- extra shorts container -->
+        <div id="extraShortsContainer" style="display: none;">
+            <div class="shorts-grid extra-shorts" id="extraShortsGrid">
+                <!-- Short #6 -->
+                <div class="short-card video-card" data-video-id="D6oOaJIY9NY" data-title="echoes" data-meta="edit · 0:26" data-desc="VHS style edit with grain.">
+                    <div class="thumbnail">
+                        <img src="https://img.youtube.com/vi/D6oOaJIY9NY/hqdefault.jpg" alt="thumbnail">
+                    </div>
+                    <div class="card-label">echoes</div>
+                </div>
+                
+                <!-- Short #7 -->
+                <div class="short-card video-card" data-video-id="D6oOaJIY9NY" data-title="flicker" data-meta="glitch · 0:18" data-desc="Glitch experimental.">
+                    <div class="thumbnail">
+                        <img src="https://img.youtube.com/vi/D6oOaJIY9NY/hqdefault.jpg" alt="thumbnail">
+                    </div>
+                    <div class="card-label">flicker</div>
+                </div>
+                
+                <!-- Short #8 -->
+                <div class="short-card video-card" data-video-id="D6oOaJIY9NY" data-title="2049" data-meta="edit · 0:30" data-desc="Cyberpunk atmosphere.">
+                    <div class="thumbnail">
+                        <img src="https://img.youtube.com/vi/D6oOaJIY9NY/hqdefault.jpg" alt="thumbnail">
+                    </div>
+                    <div class="card-label">2049</div>
+                </div>
+                
+                <!-- Short #9 -->
+                <div class="short-card video-card" data-video-id="D6oOaJIY9NY" data-title="rage" data-meta="action · 0:21" data-desc="Fast cuts, red filter.">
+                    <div class="thumbnail">
+                        <img src="https://img.youtube.com/vi/D6oOaJIY9NY/hqdefault.jpg" alt="thumbnail">
+                    </div>
+                    <div class="card-label">rage</div>
+                </div>
+                
+                <!-- Short #10 -->
+                <div class="short-card video-card" data-video-id="D6oOaJIY9NY" data-title="silhouette" data-meta="art · 0:24" data-desc="Minimalist silhouettes.">
+                    <div class="thumbnail">
+                        <img src="https://img.youtube.com/vi/D6oOaJIY9NY/hqdefault.jpg" alt="thumbnail">
+                    </div>
+                    <div class="card-label">silhouette</div>
+                </div>
+                
+                <div class="short-card see-less-card" id="shortSeeLess">
+                    <i class="fas fa-chevron-up"></i>
+                    <span>SEE LESS</span>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <!-- LONG VIDEOS -->
-
-    <section>
-
-        <h3>Long Form Works</h3>
-
-        <div class="long-grid">
-
-            <div class="card long" onclick="loadVideo('long1')">Long Video 1</div>
-            <div class="card long" onclick="loadVideo('long2')">Long Video 2</div>
-            <div class="card long" onclick="loadVideo('long3')">Long Video 3</div>
-
-            <div class="expand-btn long" id="viewMoreLong" onclick="expandLong()">View More</div>
-
-            <div class="card long hidden extra-long" onclick="loadVideo('long4')">Long Video 4</div>
-            <div class="card long hidden extra-long" onclick="loadVideo('long5')">Long Video 5</div>
-
-            <div class="expand-btn long hidden" id="viewLessLong" onclick="collapseLong()">View Less</div>
-
+    <!-- LONG FORM SECTION -->
+    <section class="section" id="longSection">
+        <h2 class="section-title"><i class="fas fa-clock" style="margin-right: 10px; color: var(--primary);"></i> LONG FORM VIDEOS</h2>
+        
+        <!-- first line: 2 videos -->
+        <div class="long-grid" id="longFirstLine">
+            <!-- Long #1 -->
+            <div class="long-card video-card" data-video-id="D6oOaJIY9NY" data-title="night walk" data-meta="4min · cinematic" data-desc="Long exposure edit through city.">
+                <div class="thumbnail">
+                    <img src="https://img.youtube.com/vi/D6oOaJIY9NY/maxresdefault.jpg" alt="thumbnail">
+                </div>
+                <div class="card-label">night walk</div>
+            </div>
+            
+            <!-- Long #2 -->
+            <div class="long-card video-card" data-video-id="D6oOaJIY9NY" data-title="red dawn" data-meta="6min · narrative" data-desc="Short film with red grading.">
+                <div class="thumbnail">
+                    <img src="https://img.youtube.com/vi/D6oOaJIY9NY/maxresdefault.jpg" alt="thumbnail">
+                </div>
+                <div class="card-label">red dawn</div>
+            </div>
+        </div>
+        
+        <!-- second line: 1 video + see more -->
+        <div class="long-second-line" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem;" id="longSecondLine">
+            <!-- Long #3 -->
+            <div class="long-card video-card" data-video-id="D6oOaJIY9NY" data-title="echoes long" data-meta="5min · experimental" data-desc="Drone shots + editing.">
+                <div class="thumbnail">
+                    <img src="https://img.youtube.com/vi/D6oOaJIY9NY/maxresdefault.jpg" alt="thumbnail">
+                </div>
+                <div class="card-label">echoes long</div>
+            </div>
+            
+            <div class="long-card see-more-card" id="longSeeMore">
+                <i class="fas fa-plus-circle"></i>
+                <span>SEE MORE</span>
+                <small>+5 long videos</small>
+            </div>
         </div>
 
+        <!-- extra long container -->
+        <div id="extraLongsContainer" style="display: none; margin-top: 2rem;">
+            <div class="extra-longs" id="extraLongsGrid">
+                <!-- Long #4 -->
+                <div class="long-card video-card" data-video-id="D6oOaJIY9NY" data-title="metropolis" data-meta="8min · scifi" data-desc="Futuristic city montage.">
+                    <div class="thumbnail">
+                        <img src="https://img.youtube.com/vi/D6oOaJIY9NY/maxresdefault.jpg" alt="thumbnail">
+                    </div>
+                    <div class="card-label">metropolis</div>
+                </div>
+                
+                <!-- Long #5 -->
+                <div class="long-card video-card" data-video-id="D6oOaJIY9NY" data-title="desolate" data-meta="7min · mood" data-desc="Desert landscape edit.">
+                    <div class="thumbnail">
+                        <img src="https://img.youtube.com/vi/D6oOaJIY9NY/maxresdefault.jpg" alt="thumbnail">
+                    </div>
+                    <div class="card-label">desolate</div>
+                </div>
+                
+                <!-- Long #6 -->
+                <div class="long-card video-card" data-video-id="D6oOaJIY9NY" data-title="cyber structure" data-meta="5min · cgi" data-desc="3D architecture.">
+                    <div class="thumbnail">
+                        <img src="https://img.youtube.com/vi/D6oOaJIY9NY/maxresdefault.jpg" alt="thumbnail">
+                    </div>
+                    <div class="card-label">cyber structure</div>
+                </div>
+                
+                <!-- Long #7 -->
+                <div class="long-card video-card" data-video-id="D6oOaJIY9NY" data-title="neon noir" data-meta="9min · crime" data-desc="Neon soaked noir edit.">
+                    <div class="thumbnail">
+                        <img src="https://img.youtube.com/vi/D6oOaJIY9NY/maxresdefault.jpg" alt="thumbnail">
+                    </div>
+                    <div class="card-label">neon noir</div>
+                </div>
+                
+                <!-- Long #8 -->
+                <div class="long-card video-card" data-video-id="D6oOaJIY9NY" data-title="last light" data-meta="6min · drama" data-desc="Golden hour visuals.">
+                    <div class="thumbnail">
+                        <img src="https://img.youtube.com/vi/D6oOaJIY9NY/maxresdefault.jpg" alt="thumbnail">
+                    </div>
+                    <div class="card-label">last light</div>
+                </div>
+                
+                <div class="long-card see-less-card" id="longSeeLess">
+                    <i class="fas fa-chevron-up"></i>
+                    <span>SEE LESS</span>
+                </div>
+            </div>
+        </div>
     </section>
+
+    <!-- REMOVED footer text -->
 
     <script>
-
-        const glow=document.querySelector(".cursor-glow");
-
-        document.addEventListener("mousemove",e=>{
-            glow.style.left=e.clientX+"px";
-            glow.style.top=e.clientY+"px";
+        // CURSOR GLOW - OPTIMIZED
+        const glow = document.querySelector(".cursor-glow");
+        let mouseX = 0, mouseY = 0;
+        let currentX = 0, currentY = 0;
+        
+        document.addEventListener("mousemove", e => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
         });
-
-        function expandShorts(){
-            document.querySelectorAll(".extra-short").forEach(el=>el.classList.remove("hidden"));
-            document.getElementById("viewMoreShort").classList.add("hidden");
-            document.getElementById("viewLessShort").classList.remove("hidden");
+        
+        function animateGlow() {
+            currentX += (mouseX - currentX) * 0.1;
+            currentY += (mouseY - currentY) * 0.1;
+            glow.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) translate(-50%, -50%)`;
+            requestAnimationFrame(animateGlow);
+        }
+        
+        if (window.innerWidth > 768) {
+            requestAnimationFrame(animateGlow);
+        } else {
+            document.addEventListener("mousemove", e => {
+                glow.style.left = e.clientX + "px";
+                glow.style.top = e.clientY + "px";
+            });
         }
 
-        function collapseShorts(){
-            document.querySelectorAll(".extra-short").forEach(el=>el.classList.add("hidden"));
-            document.getElementById("viewMoreShort").classList.remove("hidden");
-            document.getElementById("viewLessShort").classList.add("hidden");
-        }
+        (function() {
+            // back button
+            document.getElementById('backBtn').addEventListener('click', () => {
+                window.location.href = 'xeet-studio-editing.html';
+            });
 
-        function expandLong(){
-            document.querySelectorAll(".extra-long").forEach(el=>el.classList.remove("hidden"));
-            document.getElementById("viewMoreLong").classList.add("hidden");
-            document.getElementById("viewLessLong").classList.remove("hidden");
-        }
+            // video player
+            const playerSection = document.getElementById('playerSection');
+            const videoPlayer = document.getElementById('videoPlayer');
+            const videoTitle = document.getElementById('videoTitle');
+            const videoMeta = document.getElementById('videoMeta');
+            const videoDesc = document.getElementById('videoDesc');
 
-        function collapseLong(){
-            document.querySelectorAll(".extra-long").forEach(el=>el.classList.add("hidden"));
-            document.getElementById("viewMoreLong").classList.remove("hidden");
-            document.getElementById("viewLessLong").classList.add("hidden");
-        }
+            function playVideo(videoId, title, meta, desc) {
+                videoTitle.innerText = title || 'xeet edit';
+                videoMeta.innerText = meta || '4k · 0:20';
+                videoDesc.innerText = desc || 'Cinematic edit with red accents.';
+                
+                videoPlayer.innerHTML = `
+                    <iframe width="100%" height="100%" 
+                        src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                `;
 
-        const videos={
-            short1:{title:"Short 1",desc:"Short editing showcase.",url:"https://www.youtube.com/embed/YOUR_ID"},
-            short2:{title:"Short 2",desc:"Short editing showcase.",url:"https://www.youtube.com/embed/YOUR_ID"},
-            long1:{title:"Long 1",desc:"Long form project.",url:"https://www.youtube.com/embed/YOUR_ID"},
-            long2:{title:"Long 2",desc:"Long form project.",url:"https://www.youtube.com/embed/YOUR_ID"},
-            long3:{title:"Long 3",desc:"Long form project.",url:"https://www.youtube.com/embed/YOUR_ID"}
-        };
+                playerSection.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
 
-        function loadVideo(id){
-
-            if(videos[id]){
-                document.getElementById("videoFrame").src=videos[id].url;
-                document.getElementById("videoTitle").innerText=videos[id].title;
-                document.getElementById("videoDesc").innerText=videos[id].desc;
-                document.getElementById("playerSection").style.display="grid";
-                window.scrollTo({top:0,behavior:"smooth"});
+                playerSection.classList.add('player-highlight');
+                setTimeout(() => {
+                    playerSection.classList.remove('player-highlight');
+                }, 1000);
             }
 
-        }
+            function getVideoIdFromUrl() {
+                const urlParams = new URLSearchParams(window.location.search);
+                return urlParams.get('video');
+            }
 
-        const params=new URLSearchParams(window.location.search);
-        const videoId=params.get("video");
+            function attachCardListeners() {
+                document.querySelectorAll('.video-card').forEach(card => {
+                    if (card.classList.contains('see-more-card') || card.classList.contains('see-less-card')) return;
+                    
+                    card.removeEventListener('click', card.clickHandler);
+                    card.clickHandler = (e) => {
+                        e.stopPropagation();
+                        const videoId = card.dataset.videoId || 'D6oOaJIY9NY';
+                        const title = card.dataset.title || 'xeet edit';
+                        const meta = card.dataset.meta || '4k · 0:20';
+                        const desc = card.dataset.desc || 'Cinematic edit with red accents.';
+                        playVideo(videoId, title, meta, desc);
+                    };
+                    card.addEventListener('click', card.clickHandler);
+                });
+            }
 
-        if(videoId && videos[videoId]){
-            loadVideo(videoId);
-        }else{
-            document.getElementById("playerSection").style.display="none";
-        }
+            const urlVideoId = getVideoIdFromUrl();
+            if (urlVideoId) {
+                const cards = document.querySelectorAll('.video-card');
+                let found = false;
+                for (let card of cards) {
+                    if (card.dataset.videoId === urlVideoId) {
+                        playVideo(
+                            card.dataset.videoId,
+                            card.dataset.title,
+                            card.dataset.meta,
+                            card.dataset.desc
+                        );
+                        found = true;
+                        break;
+                    }
+                }
+                if (!found) {
+                    playVideo(urlVideoId, 'XEET EDIT', '4k · 0:23', 'Check out this amazing edit!');
+                }
+            }
 
+            // SHORT SECTION
+            const shortSeeMore = document.getElementById('shortSeeMore');
+            const extraContainer = document.getElementById('extraShortsContainer');
+            const shortSeeLess = document.getElementById('shortSeeLess');
+
+            if (shortSeeMore) {
+                shortSeeMore.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    shortSeeMore.style.display = 'none';
+                    extraContainer.style.display = 'block';
+                    attachCardListeners();
+                });
+            }
+
+            if (shortSeeLess) {
+                shortSeeLess.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    extraContainer.style.display = 'none';
+                    shortSeeMore.style.display = 'flex';
+                });
+            }
+
+            // LONG SECTION
+            const longSeeMore = document.getElementById('longSeeMore');
+            const extraLongs = document.getElementById('extraLongsContainer');
+            const longSeeLess = document.getElementById('longSeeLess');
+
+            if (longSeeMore) {
+                longSeeMore.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    longSeeMore.style.display = 'none';
+                    extraLongs.style.display = 'block';
+                    attachCardListeners();
+                });
+            }
+
+            if (longSeeLess) {
+                longSeeLess.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    extraLongs.style.display = 'none';
+                    longSeeMore.style.display = 'flex';
+                });
+            }
+
+            attachCardListeners();
+        })();
     </script>
-
 </body>
 </html>

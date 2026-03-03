@@ -2,60 +2,417 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Coming Soon</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>COMING SOON · XEETOPIA</title>
+    <!-- Font Awesome for subtle icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* ===== PURE FUTURISTIC COMING SOON ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<style>
-body{
-  margin:0;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:#000;
-  font-family:sans-serif;
-  color:white;
-}
+        /* Clean, bold palette */
+        :root {
+            --primary: #ff2a2a;
+            --primary-glow: #ff2a2a80;
+            --primary-soft: #ff2a2a20;
+            --bg-deep: #000000;
+            --bg-soft: #0a0a0a;
+            --text-bright: #ffffff;
+            --text-muted: #aaaaaa;
+            --border-glow: #ff2a2a40;
+        }
 
-/* box */
-.box{
-  text-align:center;
-}
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: var(--bg-deep);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--text-bright);
+            position: relative;
+            overflow-x: hidden;
+        }
 
-/* heading */
-h1{
-  font-size:50px;
-  margin-bottom:10px;
-  color:white;
-  text-shadow:0 0 20px red;
-}
+        /* ===== BOLD BACKGROUND ===== */
+        .bg-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 40%, rgba(255, 42, 42, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 60%, rgba(255, 42, 42, 0.1) 0%, transparent 50%),
+                linear-gradient(145deg, #000000 0%, #0a0a0a 100%);
+            z-index: -1;
+        }
 
-/* text */
-p{
-  opacity:0.7;
-  margin-bottom:25px;
-}
+        /* ===== SIMPLE LINES ===== */
+        .line {
+            position: fixed;
+            background: linear-gradient(90deg, transparent, var(--border-glow), transparent);
+            height: 1px;
+            width: 100%;
+            left: 0;
+            z-index: 0;
+        }
 
-/* button */
-a{
-  padding:12px 28px;
-  background:white;
-  color:black;
-  text-decoration:none;
-  border-radius:8px;
-  transition:0.3s;
-}
+        .line-top {
+            top: 15%;
+            animation: linePulse 4s infinite;
+        }
 
-a:hover{
-  box-shadow:0 0 20px red;
-}
-</style>
+        .line-bottom {
+            bottom: 15%;
+            animation: linePulse 4s infinite reverse;
+        }
+
+        @keyframes linePulse {
+            0%, 100% { opacity: 0.3; transform: scaleX(1); }
+            50% { opacity: 0.8; transform: scaleX(1.1); }
+        }
+
+        /* ===== SIMPLE DOTS ===== */
+        .dot-pattern {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(var(--primary-soft) 1px, transparent 1px);
+            background-size: 60px 60px;
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 0;
+            animation: dotsMove 20s linear infinite;
+        }
+
+        @keyframes dotsMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30px, 30px); }
+        }
+
+        /* ===== CLEAN CURSOR GLOW ===== */
+        .cursor-glow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: min(300px, 40vw);
+            height: min(300px, 40vw);
+            background: radial-gradient(circle, rgba(255, 42, 42, 0.2) 0%, transparent 70%);
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            z-index: 9999;
+            filter: blur(50px);
+            mix-blend-mode: screen;
+            border-radius: 50%;
+        }
+
+        /* ===== MAIN CARD - BOLD & CLEAN ===== */
+        .coming-soon-card {
+            text-align: center;
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-glow);
+            border-radius: 40px;
+            padding: 5rem 6rem;
+            position: relative;
+            z-index: 100;
+            box-shadow: 
+                0 30px 60px -30px rgba(0,0,0,0.9),
+                0 0 0 1px rgba(255,42,42,0.2) inset,
+                0 0 60px rgba(255,42,42,0.2);
+            max-width: 900px;
+            width: 90%;
+            margin: 20px;
+        }
+
+        /* ===== BIG BOLD ICON ===== */
+        .icon-large {
+            font-size: 6rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            filter: drop-shadow(0 0 30px var(--primary));
+            opacity: 0.9;
+            animation: iconFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-10px) scale(1.05); }
+        }
+
+        /* ===== COMING SOON TEXT - BIG & BOLD ===== */
+        .coming-soon {
+            font-size: 6rem;
+            font-weight: 900;
+            letter-spacing: 12px;
+            color: white;
+            text-transform: uppercase;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            text-shadow: 
+                0 0 30px var(--primary),
+                0 0 60px rgba(255,42,42,0.5);
+            animation: textGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes textGlow {
+            0%, 100% { text-shadow: 0 0 30px var(--primary), 0 0 60px rgba(255,42,42,0.5); }
+            50% { text-shadow: 0 0 50px var(--primary), 0 0 90px var(--primary), 0 0 120px rgba(255,42,42,0.8); }
+        }
+
+        /* ===== UNDER CONSTRUCTION BADGE ===== */
+        .badge {
+            display: inline-block;
+            background: rgba(255, 42, 42, 0.1);
+            border: 1px solid var(--border-glow);
+            padding: 10px 30px;
+            border-radius: 50px;
+            margin: 2rem 0;
+            font-size: 1rem;
+            letter-spacing: 4px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            backdrop-filter: blur(5px);
+        }
+
+        .badge i {
+            color: var(--primary);
+            margin: 0 8px;
+            animation: badgePulse 2s infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+
+        /* ===== SIMPLE DESCRIPTION ===== */
+        .message {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin: 2rem 0 3rem;
+            letter-spacing: 1px;
+            line-height: 1.8;
+            max-width: 600px;
+        }
+
+        /* ===== PROGRESS BAR - SIMPLE ===== */
+        .progress-container {
+            width: 300px;
+            height: 3px;
+            background: rgba(255,255,255,0.1);
+            margin: 2rem auto;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            width: 65%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), rgba(255,42,42,0.5));
+            border-radius: 10px;
+            animation: progressMove 3s ease-in-out infinite;
+        }
+
+        @keyframes progressMove {
+            0% { width: 30%; opacity: 0.8; }
+            50% { width: 80%; opacity: 1; }
+            100% { width: 30%; opacity: 0.8; }
+        }
+
+        /* ===== BACK BUTTON - BOLD & CLEAN ===== */
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 18px 50px;
+            background: transparent;
+            color: white;
+            text-decoration: none;
+            border-radius: 60px;
+            transition: all 0.4s ease;
+            font-weight: 500;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            border: 2px solid var(--border-glow);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            margin-top: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .back-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,42,42,0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .back-btn:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px -15px var(--primary);
+            background: rgba(255,42,42,0.1);
+        }
+
+        .back-btn:hover::before {
+            left: 100%;
+        }
+
+        .back-btn i {
+            transition: transform 0.3s;
+        }
+
+        .back-btn:hover i {
+            transform: translateX(-5px);
+        }
+
+        /* ===== TIMELINE NOTE ===== */
+        .timeline-note {
+            margin-top: 3rem;
+            color: rgba(255,255,255,0.2);
+            font-size: 0.9rem;
+            letter-spacing: 3px;
+        }
+
+        /* ===== MOBILE OPTIMIZATION ===== */
+        @media (max-width: 700px) {
+            .coming-soon-card {
+                padding: 3rem 2rem;
+            }
+            
+            .coming-soon {
+                font-size: 3.5rem;
+                letter-spacing: 6px;
+            }
+            
+            .icon-large {
+                font-size: 4rem;
+            }
+            
+            .badge {
+                padding: 8px 20px;
+                font-size: 0.8rem;
+                letter-spacing: 2px;
+            }
+            
+            .message {
+                font-size: 1rem;
+            }
+            
+            .back-btn {
+                padding: 15px 35px;
+                font-size: 1rem;
+            }
+            
+            .line-top, .line-bottom {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .coming-soon {
+                font-size: 2.5rem;
+                letter-spacing: 4px;
+            }
+            
+            .coming-soon-card {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <div class="box">
-    <h1>Coming Soon</h1>
-    <p>We are working on this feature and will release soon</p>
-    <a href="index.html">Go Back</a>
-  </div>
+    <!-- SIMPLE BACKGROUND -->
+    <div class="bg-glow"></div>
+    <div class="dot-pattern"></div>
+    
+    <!-- CLEAN LINES -->
+    <div class="line line-top"></div>
+    <div class="line line-bottom"></div>
+
+    <!-- CURSOR GLOW -->
+    <div class="cursor-glow"></div>
+
+    <!-- MAIN COMING SOON CARD -->
+    <div class="coming-soon-card">
+        <!-- BIG ICON -->
+        <div class="icon-large">
+            <i class="fas fa-hourglass-half"></i>
+        </div>
+        
+        <!-- BIG BOLD COMING SOON -->
+        <h1 class="coming-soon">COMING SOON</h1>
+        
+        <!-- UNDER CONSTRUCTION BADGE -->
+        <div class="badge">
+            <i class="fas fa-code"></i> UNDER CONSTRUCTION <i class="fas fa-paint-brush"></i>
+        </div>
+        
+        <!-- SIMPLE MESSAGE -->
+        <p class="message">
+            We're working hard to bring you something amazing.<br>
+            Stay tuned for updates.
+        </p>
+        
+        <!-- SIMPLE PROGRESS -->
+        <div class="progress-container">
+            <div class="progress-bar"></div>
+        </div>
+        
+        <!-- CLEAN BACK BUTTON -->
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i> 
+            BACK TO HOME
+        </a>
+        
+        <!-- SUBTLE TIMELINE -->
+        <div class="timeline-note">
+            ✦  launching soon  ✦
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // SMOOTH CURSOR GLOW
+            const glow = document.querySelector(".cursor-glow");
+            let mouseX = 0, mouseY = 0;
+            let currentX = 0, currentY = 0;
+            
+            document.addEventListener("mousemove", e => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+            
+            function animateGlow() {
+                currentX += (mouseX - currentX) * 0.08;
+                currentY += (mouseY - currentY) * 0.08;
+                glow.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) translate(-50%, -50%)`;
+                requestAnimationFrame(animateGlow);
+            }
+            
+            if (window.innerWidth > 768) {
+                requestAnimationFrame(animateGlow);
+            } else {
+                document.addEventListener("mousemove", e => {
+                    glow.style.left = e.clientX + "px";
+                    glow.style.top = e.clientY + "px";
+                });
+            }
+        })();
+    </script>
 </body>
 </html>
