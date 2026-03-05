@@ -2,996 +2,1006 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-    <title>EDITING PORTFOLIO · XEET</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>XEET · cinema</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        /* ===== XEET PORTFOLIO - ULTIMATE EDITION ===== */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
-        /* AMOLED black / red - PREMIUM PALETTE */
+        /* ===== XEET CINEMATIC IDENTITY ===== */
         :root {
-            --primary: #ff2a2a;
-            --primary-light: #ff5e5e;
-            --primary-glow: #ff2a2a80;
-            --primary-intense: #ff0000;
-            --dark-bg: #000000;
-            --card-bg: #0b0b0b;
-            --border-dim: #222222;
-            --text-light: #cccccc;
+            --red: #ff2a2a;
+            --red-dim: rgba(255, 42, 42, 0.3);
+            --red-glow: rgba(255, 42, 42, 0.2);
+            --bg-deep: #030303;
+            --bg-surface: #0a0a0a;
+            --bg-card: #111111;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-muted: #505050;
+            --border: #202020;
         }
 
         body {
-            background-color: #000000;
-            color: #eeeeee;
-            line-height: 1.5;
-            scroll-behavior: smooth;
-            overflow-x: hidden;
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+            width: 100%;
         }
 
-        /* ===== ULTIMATE ANIMATION LIBRARY ===== */
-        @keyframes flicker {
-            0% { opacity: 0.9; text-shadow: 0 0 5px var(--primary); }
-            50% { opacity: 1; text-shadow: 0 0 15px var(--primary), 0 0 30px var(--primary-intense); }
-            100% { opacity: 0.9; text-shadow: 0 0 5px var(--primary); }
-        }
-
-        @keyframes borderPulse {
-            0% { border-color: #ff2a2a20; box-shadow: 0 0 5px #ff2a2a20; }
-            50% { border-color: var(--primary); box-shadow: 0 0 25px var(--primary-glow); }
-            100% { border-color: #ff2a2a20; box-shadow: 0 0 5px #ff2a2a20; }
-        }
-
-        /* PLAYFUL ANIMATIONS */
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
-            100% { transform: translateY(0px); }
-        }
-
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            25% { transform: scale(1.1); }
-            35% { transform: scale(1); }
-            45% { transform: scale(1.05); }
-            55% { transform: scale(1); }
-        }
-
-        @keyframes shimmer {
-            0% { background-position: -200% center; }
-            100% { background-position: 200% center; }
-        }
-
-        @keyframes glitch {
-            0% { transform: skew(0deg, 0deg); opacity: 1; }
-            20% { transform: skew(2deg, 1deg); opacity: 0.9; text-shadow: 2px 0 red, -2px 0 blue; }
-            40% { transform: skew(-2deg, -1deg); opacity: 0.9; text-shadow: -2px 0 red, 2px 0 blue; }
-            60% { transform: skew(0deg, 0deg); opacity: 1; }
-            100% { transform: skew(0deg, 0deg); opacity: 1; }
-        }
-
-        @keyframes spinSlow {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        @keyframes ripple {
-            0% { box-shadow: 0 0 0 0 var(--primary-glow); }
-            50% { box-shadow: 0 0 0 15px var(--primary-glow); }
-            100% { box-shadow: 0 0 0 0 var(--primary-glow); }
-        }
-
-        @keyframes pulseGlow {
-            0% { box-shadow: 0 0 20px var(--primary-glow); }
-            50% { box-shadow: 0 0 50px var(--primary), 0 0 0 3px rgba(255,42,42,0.3); }
-            100% { box-shadow: 0 0 20px var(--primary-glow); }
-        }
-
-        /* ===== CURSOR GLOW ===== */
-        .cursor-glow {
+        /* ===== CURSOR (hidden on mobile) ===== */
+        .cursor {
+            width: 12px;
+            height: 12px;
+            background: var(--red);
+            border-radius: 50%;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: min(280px, 40vw);
-            height: min(280px, 40vw);
-            background: radial-gradient(circle, rgba(255, 42, 42, 0.35) 0%, transparent 70%);
             pointer-events: none;
+            z-index: 9999;
             transform: translate(-50%, -50%);
-            z-index: 999;
-            filter: blur(45px);
-            mix-blend-mode: screen;
-            will-change: transform;
+            mix-blend-mode: difference;
+            transition: width 0.2s, height 0.2s;
         }
 
         @media (max-width: 768px) {
-            .cursor-glow {
-                width: 200px;
-                height: 200px;
-                opacity: 0.4;
-                filter: blur(35px);
+            .cursor {
+                display: none;
             }
         }
 
-        /* ===== NAVBAR - GLASS ELITE ===== */
+        /* ===== NAVBAR ===== */
         .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 5%;
-            background: rgba(0, 0, 0, 0.95);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--primary-glow);
-            position: sticky;
-            top: 0;
+            padding: 2rem 4rem;
             z-index: 100;
-            box-shadow: 0 5px 30px rgba(255, 42, 42, 0.15);
+            mix-blend-mode: difference;
         }
 
-        .logo a {
+        .logo {
             font-size: 1.8rem;
-            font-weight: 800;
+            font-weight: 300;
             letter-spacing: 4px;
-            text-decoration: none;
             color: white;
-            animation: flicker 4s infinite, float 6s infinite;
-            border: 1px solid var(--primary-glow);
-            padding: 0.2rem 1rem;
-            transition: 0.3s;
-            position: relative;
-            overflow: hidden;
-            display: inline-block;
+            text-decoration: none;
         }
 
-        .logo a::before {
+        .nav-items {
+            display: flex;
+            gap: 4rem;
+        }
+
+        .nav-items a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-items a::after {
             content: '';
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255, 42, 42, 0.2), transparent);
-            transform: rotate(45deg);
-            animation: shimmer 3s infinite;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--red);
+            transition: width 0.3s;
         }
 
-        .logo a:hover {
-            border-color: var(--primary);
-            box-shadow: 0 0 30px var(--primary);
-            transform: scale(1.05);
+        .nav-items a:hover::after {
+            width: 100%;
         }
 
-        /* ===== BACK BUTTON - PREMIUM ===== */
-        .back-btn {
-            background: linear-gradient(135deg, rgba(255,42,42,0.1), rgba(0,0,0,0.5));
-            border: 2px solid var(--primary-glow);
-            color: white;
-            padding: 0.7rem 2.2rem;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            border-radius: 40px;
-            background: rgba(10, 10, 10, 0.7);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+        /* ===== HERO PLAYER ===== */
+        .hero-player {
+            min-height: 100vh;
+            position: relative;
             display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: center;
+            border-bottom: 1px solid var(--border);
+            padding: 6rem 2rem 4rem;
+        }
+
+        .player-container {
+            width: 100%;
+            max-width: 1400px;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .video-frame {
             position: relative;
+            aspect-ratio: 16 / 9;
+            background: var(--bg-card);
+            border-radius: 4px;
             overflow: hidden;
-            letter-spacing: 1px;
+            box-shadow: 0 30px 60px -30px black;
+            width: 100%;
         }
 
-        .back-btn i {
-            color: var(--primary);
-            transition: transform 0.3s;
-        }
-
-        .back-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
+        .video-frame iframe {
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
+            border: none;
         }
 
-        .back-btn:hover {
-            background: var(--primary);
-            border-color: white;
-            box-shadow: 0 0 40px var(--primary), 0 0 0 3px rgba(255,42,42,0.3);
-            transform: scale(1.08) translateY(-3px);
-            color: black;
-            animation: heartbeat 1s;
-        }
-
-        .back-btn:hover i {
-            color: black;
-            transform: translateX(-5px) rotate(10deg);
-        }
-
-        .back-btn:hover::before {
-            left: 100%;
-        }
-
-        /* ===== PLAYER SECTION - ULTRA PREMIUM ===== */
-        .player-section {
-            display: flex;
-            flex-wrap: wrap;
-            padding: 2.5rem 5%;
-            gap: 2rem;
-            border-bottom: 1px solid var(--primary-glow);
-            background: radial-gradient(circle at 70% 30%, #2a0000, #000000 80%);
-            scroll-margin-top: 80px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .player-section::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,42,42,0.1) 0%, transparent 50%);
-            animation: spinSlow 20s linear infinite;
-        }
-
-        .video-player-area {
-            flex: 1 1 500px;
-            min-width: 300px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .video-placeholder {
+        .video-frame .placeholder {
             width: 100%;
-            aspect-ratio: 16 / 9;
-            background: linear-gradient(145deg, #0f0f0f, #050505);
-            border: 2px solid var(--primary-glow);
-            border-radius: 30px;
+            height: 100%;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             gap: 1rem;
-            box-shadow: 0 0 40px var(--primary-glow);
-            transition: all 0.3s;
-            overflow: hidden;
-            position: relative;
+            color: var(--text-muted);
         }
 
-        .video-placeholder::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,42,42,0.2), transparent 70%);
-            opacity: 0.3;
-            animation: spinSlow 15s linear infinite;
-        }
-
-        .video-placeholder iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            position: relative;
-            z-index: 2;
-        }
-
-        .video-placeholder i {
-            font-size: 5rem;
-            color: var(--primary-glow);
-            z-index: 2;
-        }
-
-        .video-placeholder span {
-            background: var(--primary);
-            color: black;
-            padding: 0.3rem 1.5rem;
-            border-radius: 40px;
-            font-weight: bold;
-            z-index: 2;
-            box-shadow: 0 0 20px var(--primary);
+        .video-frame .placeholder i {
+            font-size: 4rem;
+            color: var(--red-dim);
         }
 
         .video-info {
-            flex: 1 1 300px;
-            background: rgba(10,10,10,0.8);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
             padding: 2rem;
-            border-radius: 40px;
-            border: 1px solid var(--primary-glow);
-            box-shadow: 0 20px 40px -20px black, 0 0 30px var(--primary-glow);
-            position: relative;
-            z-index: 2;
-            transition: transform 0.3s;
-        }
-
-        .video-info:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: 0 0 50px var(--primary-glow);
         }
 
         .video-info h2 {
-            font-size: 2.5rem;
-            border-left: 6px solid var(--primary);
-            padding-left: 1rem;
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 300;
+            line-height: 1.2;
             margin-bottom: 1rem;
-            animation: float 5s infinite;
         }
 
-        .video-info .meta {
-            color: #aaa;
-            margin: 1.5rem 0;
-            font-style: italic;
+        .video-info h2 span {
+            color: var(--red);
         }
 
-        .video-info .desc {
-            color: #ccc;
-            line-height: 1.7;
-            border-top: 1px dashed var(--primary-glow);
-            padding-top: 1.5rem;
+        .video-meta {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
         }
 
-        /* ===== SECTION TITLES ===== */
+        .video-desc {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            font-weight: 300;
+            border-left: 2px solid var(--red);
+            padding-left: 1.5rem;
+        }
+
+        /* ===== SCROLL INDICATOR ===== */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+        }
+
+        .scroll-indicator i {
+            animation: bounce 2s infinite;
+            color: var(--red);
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(8px); }
+        }
+
+        /* ===== SECTION ===== */
         .section {
-            padding: 3rem 5%;
+            padding: 6rem 4rem;
+            max-width: 1600px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .section-index {
+            color: var(--red);
+            font-size: 1rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            opacity: 0.8;
         }
 
         .section-title {
-            font-size: 2rem;
-            font-weight: 700;
-            margin-bottom: 2rem;
-            border-left: 6px solid var(--primary);
-            padding-left: 1rem;
-            animation: float 4s infinite;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 300;
+            letter-spacing: -0.02em;
         }
 
-        /* ===== VIDEO CARDS - ULTRA PREMIUM ===== */
-        .shorts-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1.2rem;
-            padding-bottom: 1rem;
+        .section-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--red-dim), transparent);
+            min-width: 100px;
         }
 
-        .short-card {
-            width: 200px;
-            height: 360px;
-            background: linear-gradient(145deg, #0c0c0c, #121212);
-            border: 1px solid var(--primary-glow);
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            cursor: pointer;
-            flex: 0 0 auto;
-            box-shadow: 0 15px 30px -15px black;
-            position: relative;
-        }
-
-        .short-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,42,42,0.1), transparent 70%);
-            opacity: 0;
-            transition: opacity 0.5s;
-            transform: rotate(30deg);
-            pointer-events: none;
-        }
-
-        .short-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-12px) scale(1.03);
-            box-shadow: 0 30px 50px var(--primary-glow), 0 0 0 2px rgba(255,42,42,0.5);
-            animation: pulseGlow 2s infinite;
-        }
-
-        .short-card:hover::before {
-            opacity: 1;
-            animation: spinSlow 10s linear infinite;
-        }
-
-        .thumbnail {
+        /* ===== CINEMA GRID ===== */
+        .cinema-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
             width: 100%;
-            height: 75%;
-            background: linear-gradient(145deg, #0f0f0f, #050505);
-            overflow: hidden;
-            border-bottom: 2px solid var(--primary-glow);
-            position: relative;
         }
 
-        .thumbnail img {
+        .cinema-item {
+            aspect-ratio: 9 / 16;
+            background: var(--bg-card);
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .cinema-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+            transition: transform 0.6s;
         }
 
-        .video-card:hover .thumbnail img {
-            transform: scale(1.15) rotate(1deg);
+        .cinema-item:hover img {
+            transform: scale(1.1);
         }
 
-        .card-label {
-            padding: 1rem;
-            font-weight: 600;
-            color: #ddd;
-            text-align: center;
-            font-size: 0.95rem;
-            position: relative;
-            z-index: 2;
-        }
-
-        /* ===== SEE MORE/LESS CARDS - ENHANCED ===== */
-        .see-more-card, .see-less-card {
-            background: linear-gradient(145deg, #070707, #0f0f0f);
-            border: 2px dashed var(--primary-glow);
+        .cinema-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, transparent 60%);
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 0.6rem;
-            color: var(--primary);
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            position: relative;
-            overflow: hidden;
+            justify-content: flex-end;
+            padding: 1.5rem;
+            opacity: 0;
+            transition: opacity 0.3s;
         }
 
-        .see-less-card {
+        .cinema-item:hover .cinema-overlay {
+            opacity: 1;
+        }
+
+        .cinema-title {
             color: white;
-            border-color: var(--primary);
+            font-weight: 400;
+            font-size: 0.9rem;
+            margin-bottom: 0.2rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
-        .see-more-card i, .see-less-card i {
-            font-size: 2.2rem;
-            transition: transform 0.4s;
+        .cinema-duration {
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
         }
 
-        .see-more-card::before, .see-less-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
+        .cinema-duration i {
+            color: var(--red);
+            font-size: 0.7rem;
+        }
+
+        .cinema-more {
+            aspect-ratio: 9 / 16;
+            background: var(--bg-card);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid var(--border);
+            width: 100%;
+            text-align: center;
+            padding: 0.5rem;
+        }
+
+        .cinema-more i {
+            font-size: 2.5rem;
+            color: var(--red-dim);
+            transition: all 0.3s;
+        }
+
+        .cinema-more:hover {
+            background: var(--bg-surface);
+        }
+
+        .cinema-more:hover i {
+            color: var(--red);
+            transform: rotate(90deg);
+        }
+
+        .cinema-more span {
+            font-size: 0.8rem;
+        }
+
+        /* ===== FEATURE GRID ===== */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            margin-bottom: 1px;
+            width: 100%;
+        }
+
+        .feature-item {
+            aspect-ratio: 16 / 9;
+            background: var(--bg-card);
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+            width: 100%;
+        }
+
+        .feature-item img {
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,42,42,0.3), transparent);
-            transition: left 0.5s;
+            object-fit: cover;
+            transition: transform 0.6s;
         }
 
-        .see-more-card:hover, .see-less-card:hover {
-            background: #1a0000;
-            border-color: var(--primary);
-            transform: translateY(-12px) scale(1.03);
-            box-shadow: 0 0 40px var(--primary);
-            animation: ripple 1.5s infinite;
+        .feature-item:hover img {
+            transform: scale(1.1);
         }
 
-        .see-more-card:hover i {
-            transform: rotate(180deg) scale(1.2);
-            color: var(--primary);
-        }
-
-        .see-less-card:hover i {
-            transform: rotate(-180deg) scale(1.2);
-        }
-
-        .see-more-card:hover::before, .see-less-card:hover::before {
-            left: 100%;
-        }
-
-        /* ===== LONG GRIDS ===== */
-        .long-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin-top: 1rem;
-        }
-
-        .long-card {
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            background: linear-gradient(145deg, #0c0c0c, #121212);
-            border: 1px solid var(--primary-glow);
-            border-radius: 20px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
-            position: relative;
-            box-shadow: 0 15px 30px -15px black;
-        }
-
-        .long-card::before {
-            content: '';
+        .feature-overlay {
             position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,42,42,0.1), transparent 70%);
-            opacity: 0;
-            transition: opacity 0.5s;
-            transform: rotate(30deg);
-            pointer-events: none;
-        }
-
-        .long-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-12px) scale(1.02);
-            box-shadow: 0 30px 50px var(--primary-glow), 0 0 0 2px rgba(255,42,42,0.5);
-        }
-
-        .long-card:hover::before {
-            opacity: 1;
-            animation: spinSlow 10s linear infinite;
-        }
-
-        .long-card .thumbnail {
-            height: 70%;
-        }
-
-        .extra-shorts {
+            inset: 0;
+            background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, transparent 60%);
             display: flex;
-            flex-wrap: wrap;
-            gap: 1.2rem;
-            margin-top: 1rem;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .feature-item:hover .feature-overlay {
+            opacity: 1;
+        }
+
+        .feature-title {
+            color: white;
+            font-weight: 400;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            margin-bottom: 0.3rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .feature-duration {
+            color: var(--text-secondary);
+            font-size: clamp(0.8rem, 1.5vw, 0.9rem);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .feature-duration i {
+            color: var(--red);
+        }
+
+        .feature-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            margin-top: 1px;
             width: 100%;
         }
 
-        .extra-longs {
+        .feature-more {
+            aspect-ratio: 16 / 9;
+            background: var(--bg-card);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .feature-more i {
+            font-size: 2.5rem;
+            color: var(--red-dim);
+            transition: all 0.3s;
+        }
+
+        .feature-more:hover {
+            background: var(--bg-surface);
+        }
+
+        .feature-more:hover i {
+            color: var(--red);
+            transform: rotate(90deg);
+        }
+
+        .feature-more span {
+            font-size: 0.9rem;
+        }
+
+        /* ===== EXTRA GRIDS ===== */
+        .extra-shorts {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            margin-top: 2rem;
+            width: 100%;
+        }
+
+        .extra-features {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
-            margin-top: 1rem;
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            margin-top: 2rem;
+            width: 100%;
         }
 
-        /* ===== PLAYER HIGHLIGHT ===== */
-        .player-highlight {
-            animation: playerPulse 1s ease;
+        .see-less {
+            aspect-ratio: 16 / 9;
+            background: var(--bg-card);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.3s;
+            grid-column: span 2;
+            width: 100%;
+            text-align: center;
+            padding: 1rem;
         }
 
-        @keyframes playerPulse {
-            0% { box-shadow: 0 0 0 0 var(--primary-glow); }
-            50% { box-shadow: 0 0 0 30px var(--primary-glow); }
-            100% { box-shadow: 0 0 0 0 var(--primary-glow); }
+        .see-less i {
+            font-size: 2rem;
+            color: var(--red-dim);
+            transition: all 0.3s;
         }
 
-        /* ===== MOBILE OPTIMIZATION ===== */
+        .see-less:hover {
+            background: var(--bg-surface);
+        }
+
+        .see-less:hover i {
+            color: var(--red);
+            transform: rotate(-90deg);
+        }
+
+        /* ===== MOBILE BREAKPOINTS ===== */
+        @media (max-width: 1200px) {
+            .cinema-grid, .extra-shorts {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .navbar {
+                padding: 1.5rem 2rem;
+            }
+            
+            .nav-items {
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .player-container {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .hero-player {
+                padding-top: 8rem;
+                min-height: auto;
+            }
+            
+            .video-info {
+                padding: 1rem 0;
+            }
+            
+            .section {
+                padding: 4rem 2rem;
+            }
+            
+            .cinema-grid, .extra-shorts {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
         @media (max-width: 700px) {
-            .player-section {
-                flex-direction: column;
+            .cinema-grid, .extra-shorts {
+                grid-template-columns: repeat(2, 1fr);
             }
-            .shorts-grid {
-                justify-content: center;
-            }
-            .short-card {
-                width: 160px;
-                height: 280px;
-            }
-            .long-grid, .extra-longs {
+            
+            .feature-grid {
                 grid-template-columns: 1fr;
             }
-            .long-second-line {
-                grid-template-columns: 1fr !important;
+            
+            .feature-row {
+                grid-template-columns: 1fr;
             }
-            .back-btn {
-                padding: 0.5rem 1.5rem;
-                font-size: 0.9rem;
+            
+            .extra-features {
+                grid-template-columns: 1fr;
+            }
+            
+            .see-less {
+                grid-column: span 1;
+            }
+            
+            .navbar {
+                padding: 1rem 1.5rem;
+            }
+            
+            .nav-items {
+                gap: 1.2rem;
+            }
+            
+            .nav-items a {
+                font-size: 0.8rem;
+                letter-spacing: 1px;
+            }
+            
+            .logo {
+                font-size: 1.4rem;
+                letter-spacing: 2px;
             }
         }
 
-        @media (max-width: 480px) {
-            .short-card {
-                width: 140px;
-                height: 250px;
+        @media (max-width: 500px) {
+            .cinema-grid, .extra-shorts {
+                grid-template-columns: 1fr;
             }
+            
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            
+            .section-line {
+                width: 100%;
+            }
+            
+            .hero-player {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+            
             .video-info h2 {
                 font-size: 1.8rem;
             }
+            
+            .scroll-indicator {
+                bottom: 1rem;
+            }
+            
+            .scroll-indicator span {
+                display: none;
+            }
+            
+            .cinema-more i, .feature-more i {
+                font-size: 2rem;
+            }
         }
 
-        /* REMOVED footer text */
+        @media (max-width: 350px) {
+            .nav-items {
+                gap: 0.8rem;
+            }
+            
+            .nav-items a {
+                font-size: 0.7rem;
+            }
+            
+            .logo {
+                font-size: 1.2rem;
+            }
+        }
+
+        /* Touch device optimizations */
+        @media (hover: none) and (pointer: coarse) {
+            .cinema-overlay,
+            .feature-overlay {
+                opacity: 1;
+                background: linear-gradient(0deg, rgba(0,0,0,0.8) 0%, transparent 50%);
+            }
+            
+            .cinema-item:hover img,
+            .feature-item:hover img {
+                transform: none;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- CURSOR GLOW - ADDED -->
-    <div class="cursor-glow"></div>
+    <!-- CURSOR -->
+    <div class="cursor"></div>
 
-    <!-- navbar -->
+    <!-- NAVBAR -->
     <nav class="navbar">
-        <div class="logo">
-            <a href="index.html">XEETOPIA</a>
+        <a href="index.html" class="logo">XEET</a>
+        <div class="nav-items">
+            <a href="#shorts">Shorts</a>
+            <a href="#features">Features</a>
         </div>
-        <button class="back-btn" id="backBtn"><i class="fas fa-arrow-left"></i> BACK</button>
     </nav>
 
-    <!-- player + info -->
-    <div class="player-section" id="playerSection">
-        <div class="video-player-area">
-            <div class="video-placeholder" id="videoPlayer">
-                <i class="fas fa-play-circle"></i>
-                <span>XEET SHORT</span>
-                <small style="color:#aaa;">click any video to play</small>
+    <!-- HERO PLAYER -->
+    <div class="hero-player" id="player">
+        <div class="player-container">
+            <div class="video-frame" id="videoPlayer">
+                <div class="placeholder">
+                    <i class="fas fa-play-circle"></i>
+                    <span>Select a film</span>
+                </div>
+            </div>
+            <div class="video-info" id="videoInfo">
+                <h2><span id="videoTitle">XEET</span> STUDIO</h2>
+                <div class="video-meta" id="videoMeta">cinematic works</div>
+                <div class="video-desc" id="videoDesc">Choose any piece from the collection below to begin watching.</div>
             </div>
         </div>
-        <div class="video-info" id="videoInfo">
-            <h2 id="videoTitle">xeet studio</h2>
-            <div class="meta" id="videoMeta">4k cinematic · 0:23</div>
-            <div class="desc" id="videoDesc">
-                Click any video to play.<br>
-                <span style="color:#ff2a2a;">#xeetstudio</span>
-            </div>
+        <div class="scroll-indicator">
+            <span>SCROLL</span>
+            <i class="fas fa-chevron-down"></i>
         </div>
     </div>
 
-    <!-- SHORT FORM SECTION -->
-    <section class="section" id="shortSection">
-        <h2 class="section-title"><i class="fas fa-film" style="margin-right: 10px; color: var(--primary);"></i> SHORT FORM VIDEOS</h2>
-        <div class="shorts-grid" id="shortGrid">
-            <!-- Short #1 -->
-            <div class="short-card video-card" data-video-id="D6oOaJIY9NY" data-title="neon dreams" data-meta="reel · 0:18" data-desc="Neon soaked edit with glitch effects. Shot on FX3.">
-                <div class="thumbnail">
-                    <img src="https://img.youtube.com/vi/D6oOaJIY9NY/hqdefault.jpg" alt="thumbnail">
+    <!-- SHORTS SECTION -->
+    <section class="section" id="shorts">
+        <div class="section-header">
+            <div class="section-index">01</div>
+            <h2 class="section-title">Short films</h2>
+            <div class="section-line"></div>
+        </div>
+
+        <div class="cinema-grid" id="shortsGrid">
+            <!-- Short 1 -->
+            <div class="cinema-item video-item" data-id="D6oOaJIY9NY" data-title="Neon Dreams" data-meta="0:18 · reel" data-desc="Neon soaked visuals with glitch effects.">
+                <img src="https://img.youtube.com/vi/D6oOaJIY9NY/hqdefault.jpg" alt="short">
+                <div class="cinema-overlay">
+                    <div class="cinema-title">Neon Dreams</div>
+                    <div class="cinema-duration"><i class="fas fa-play"></i> 0:18</div>
                 </div>
-                <div class="card-label">neon dreams</div>
             </div>
-            
-            <!-- Short #2 -->
-            <div class="short-card video-card" data-video-id="D6oOaJIY9NY" data-title="cyber pulse" data-meta="vfx · 0:22" data-desc="Fast paced transitions, color grade in davinci.">
-                <div class="thumbnail">
-                    <img src="https://img.youtube.com/vi/D6oOaJIY9NY/hqdefault.jpg" alt="thumbnail">
+            <!-- Short 2 -->
+            <div class="cinema-item video-item" data-id="D6oOaJIY9NY" data-title="Cyber Pulse" data-meta="0:22 · vfx" data-desc="Fast paced transitions and effects.">
+                <img src="https://img.youtube.com/vi/D6oOaJIY9NY/hqdefault.jpg" alt="short">
+                <div class="cinema-overlay">
+                    <div class="cinema-title">Cyber Pulse</div>
+                    <div class="cinema-duration"><i class="fas fa-play"></i> 0:22</div>
                 </div>
-                <div class="card-label">cyber pulse</div>
             </div>
-            
-            <!-- Short #3 -->
-            <div class="short-card video-card" data-video-id="D6oOaJIY9NY" data-title="red district" data-meta="cinematic · 0:28" data-desc="Dark alley ambience with red accents.">
-                <div class="thumbnail">
-                    <img src="https://img.youtube.com/vi/D6oOaJIY9NY/hqdefault.jpg" alt="thumbnail">
+            <!-- Short 3 -->
+            <div class="cinema-item video-item" data-id="D6oOaJIY9NY" data-title="Red District" data-meta="0:28 · cinematic" data-desc="Dark atmosphere with red accents.">
+                <img src="https://img.youtube.com/vi/D6oOaJIY9NY/hqdefault.jpg" alt="short">
+                <div class="cinema-overlay">
+                    <div class="cinema-title">Red District</div>
+                    <div class="cinema-duration"><i class="fas fa-play"></i> 0:28</div>
                 </div>
-                <div class="card-label">red district</div>
             </div>
-            
-            <!-- Short #4 -->
-            <div class="short-card video-card" data-video-id="D6oOaJIY9NY" data-title="xeet intro" data-meta="motion · 0:12" data-desc="3D logo reveal with particles.">
-                <div class="thumbnail">
-                    <img src="https://img.youtube.com/vi/D6oOaJIY9NY/hqdefault.jpg" alt="thumbnail">
+            <!-- Short 4 -->
+            <div class="cinema-item video-item" data-id="D6oOaJIY9NY" data-title="Xeet Intro" data-meta="0:12 · motion" data-desc="3D logo reveal with particles.">
+                <img src="https://img.youtube.com/vi/D6oOaJIY9NY/hqdefault.jpg" alt="short">
+                <div class="cinema-overlay">
+                    <div class="cinema-title">Xeet Intro</div>
+                    <div class="cinema-duration"><i class="fas fa-play"></i> 0:12</div>
                 </div>
-                <div class="card-label">xeet intro</div>
             </div>
-            
-            <!-- Short #5 -->
-            <div class="short-card video-card" data-video-id="D6oOaJIY9NY" data-title="blade runner" data-meta="edit · 0:32" data-desc="Ambient sci-fi edit with overlay.">
-                <div class="thumbnail">
-                    <img src="https://img.youtube.com/vi/D6oOaJIY9NY/hqdefault.jpg" alt="thumbnail">
+            <!-- Short 5 -->
+            <div class="cinema-item video-item" data-id="D6oOaJIY9NY" data-title="Blade Runner" data-meta="0:32 · edit" data-desc="Sci-fi ambient edit with overlays.">
+                <img src="https://img.youtube.com/vi/D6oOaJIY9NY/hqdefault.jpg" alt="short">
+                <div class="cinema-overlay">
+                    <div class="cinema-title">Blade Runner</div>
+                    <div class="cinema-duration"><i class="fas fa-play"></i> 0:32</div>
                 </div>
-                <div class="card-label">blade runner</div>
             </div>
-            
-            <!-- see more card -->
-            <div class="short-card see-more-card" id="shortSeeMore">
+            <!-- See More -->
+            <div class="cinema-more" id="shortsMore">
                 <i class="fas fa-plus-circle"></i>
-                <span>SEE MORE</span>
-                <small style="font-size:0.7rem;">+5 shorts</small>
+                <span>Expand</span>
             </div>
         </div>
-        
-        <!-- extra shorts container -->
-        <div id="extraShortsContainer" style="display: none;">
-            <div class="shorts-grid extra-shorts" id="extraShortsGrid">
-                <!-- Short #6 -->
-                <div class="short-card video-card" data-video-id="D6oOaJIY9NY" data-title="echoes" data-meta="edit · 0:26" data-desc="VHS style edit with grain.">
-                    <div class="thumbnail">
-                        <img src="https://img.youtube.com/vi/D6oOaJIY9NY/hqdefault.jpg" alt="thumbnail">
+
+        <!-- Extra Shorts (hidden) -->
+        <div id="extraShorts" style="display: none;">
+            <div class="extra-shorts" id="extraShortsGrid">
+                <!-- Short 6 -->
+                <div class="cinema-item video-item" data-id="D6oOaJIY9NY" data-title="Echoes" data-meta="0:26 · edit" data-desc="VHS style with grain texture.">
+                    <img src="https://img.youtube.com/vi/D6oOaJIY9NY/hqdefault.jpg" alt="short">
+                    <div class="cinema-overlay">
+                        <div class="cinema-title">Echoes</div>
+                        <div class="cinema-duration"><i class="fas fa-play"></i> 0:26</div>
                     </div>
-                    <div class="card-label">echoes</div>
                 </div>
-                
-                <!-- Short #7 -->
-                <div class="short-card video-card" data-video-id="D6oOaJIY9NY" data-title="flicker" data-meta="glitch · 0:18" data-desc="Glitch experimental.">
-                    <div class="thumbnail">
-                        <img src="https://img.youtube.com/vi/D6oOaJIY9NY/hqdefault.jpg" alt="thumbnail">
+                <!-- Short 7 -->
+                <div class="cinema-item video-item" data-id="D6oOaJIY9NY" data-title="Flicker" data-meta="0:18 · glitch" data-desc="Experimental glitch visuals.">
+                    <img src="https://img.youtube.com/vi/D6oOaJIY9NY/hqdefault.jpg" alt="short">
+                    <div class="cinema-overlay">
+                        <div class="cinema-title">Flicker</div>
+                        <div class="cinema-duration"><i class="fas fa-play"></i> 0:18</div>
                     </div>
-                    <div class="card-label">flicker</div>
                 </div>
-                
-                <!-- Short #8 -->
-                <div class="short-card video-card" data-video-id="D6oOaJIY9NY" data-title="2049" data-meta="edit · 0:30" data-desc="Cyberpunk atmosphere.">
-                    <div class="thumbnail">
-                        <img src="https://img.youtube.com/vi/D6oOaJIY9NY/hqdefault.jpg" alt="thumbnail">
+                <!-- Short 8 -->
+                <div class="cinema-item video-item" data-id="D6oOaJIY9NY" data-title="2049" data-meta="0:30 · cyber" data-desc="Cyberpunk atmosphere.">
+                    <img src="https://img.youtube.com/vi/D6oOaJIY9NY/hqdefault.jpg" alt="short">
+                    <div class="cinema-overlay">
+                        <div class="cinema-title">2049</div>
+                        <div class="cinema-duration"><i class="fas fa-play"></i> 0:30</div>
                     </div>
-                    <div class="card-label">2049</div>
                 </div>
-                
-                <!-- Short #9 -->
-                <div class="short-card video-card" data-video-id="D6oOaJIY9NY" data-title="rage" data-meta="action · 0:21" data-desc="Fast cuts, red filter.">
-                    <div class="thumbnail">
-                        <img src="https://img.youtube.com/vi/D6oOaJIY9NY/hqdefault.jpg" alt="thumbnail">
+                <!-- Short 9 -->
+                <div class="cinema-item video-item" data-id="D6oOaJIY9NY" data-title="Rage" data-meta="0:21 · action" data-desc="Fast cuts with red filter.">
+                    <img src="https://img.youtube.com/vi/D6oOaJIY9NY/hqdefault.jpg" alt="short">
+                    <div class="cinema-overlay">
+                        <div class="cinema-title">Rage</div>
+                        <div class="cinema-duration"><i class="fas fa-play"></i> 0:21</div>
                     </div>
-                    <div class="card-label">rage</div>
                 </div>
-                
-                <!-- Short #10 -->
-                <div class="short-card video-card" data-video-id="D6oOaJIY9NY" data-title="silhouette" data-meta="art · 0:24" data-desc="Minimalist silhouettes.">
-                    <div class="thumbnail">
-                        <img src="https://img.youtube.com/vi/D6oOaJIY9NY/hqdefault.jpg" alt="thumbnail">
+                <!-- Short 10 -->
+                <div class="cinema-item video-item" data-id="D6oOaJIY9NY" data-title="Silhouette" data-meta="0:24 · art" data-desc="Minimalist silhouettes.">
+                    <img src="https://img.youtube.com/vi/D6oOaJIY9NY/hqdefault.jpg" alt="short">
+                    <div class="cinema-overlay">
+                        <div class="cinema-title">Silhouette</div>
+                        <div class="cinema-duration"><i class="fas fa-play"></i> 0:24</div>
                     </div>
-                    <div class="card-label">silhouette</div>
                 </div>
-                
-                <div class="short-card see-less-card" id="shortSeeLess">
+                <!-- See Less -->
+                <div class="cinema-more" id="shortsLess">
                     <i class="fas fa-chevron-up"></i>
-                    <span>SEE LESS</span>
+                    <span>Collapse</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- LONG FORM SECTION -->
-    <section class="section" id="longSection">
-        <h2 class="section-title"><i class="fas fa-clock" style="margin-right: 10px; color: var(--primary);"></i> LONG FORM VIDEOS</h2>
-        
-        <!-- first line: 2 videos -->
-        <div class="long-grid" id="longFirstLine">
-            <!-- Long #1 -->
-            <div class="long-card video-card" data-video-id="D6oOaJIY9NY" data-title="night walk" data-meta="4min · cinematic" data-desc="Long exposure edit through city.">
-                <div class="thumbnail">
-                    <img src="https://img.youtube.com/vi/D6oOaJIY9NY/maxresdefault.jpg" alt="thumbnail">
-                </div>
-                <div class="card-label">night walk</div>
-            </div>
-            
-            <!-- Long #2 -->
-            <div class="long-card video-card" data-video-id="D6oOaJIY9NY" data-title="red dawn" data-meta="6min · narrative" data-desc="Short film with red grading.">
-                <div class="thumbnail">
-                    <img src="https://img.youtube.com/vi/D6oOaJIY9NY/maxresdefault.jpg" alt="thumbnail">
-                </div>
-                <div class="card-label">red dawn</div>
-            </div>
+    <!-- FEATURE FILMS SECTION -->
+    <section class="section" id="features">
+        <div class="section-header">
+            <div class="section-index">02</div>
+            <h2 class="section-title">Feature films</h2>
+            <div class="section-line"></div>
         </div>
-        
-        <!-- second line: 1 video + see more -->
-        <div class="long-second-line" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem;" id="longSecondLine">
-            <!-- Long #3 -->
-            <div class="long-card video-card" data-video-id="D6oOaJIY9NY" data-title="echoes long" data-meta="5min · experimental" data-desc="Drone shots + editing.">
-                <div class="thumbnail">
-                    <img src="https://img.youtube.com/vi/D6oOaJIY9NY/maxresdefault.jpg" alt="thumbnail">
+
+        <!-- First row - 2 features -->
+        <div class="feature-grid">
+            <div class="feature-item video-item" data-id="EUQy7JQjaXo" data-title="Night Walk" data-meta="4:23 · cinematic" data-desc="Long exposure edit through city streets.">
+                <img src="https://img.youtube.com/vi/EUQy7JQjaXo/maxresdefault.jpg" alt="feature">
+                <div class="feature-overlay">
+                    <div class="feature-title">Night Walk</div>
+                    <div class="feature-duration"><i class="fas fa-clock"></i> 4:23</div>
                 </div>
-                <div class="card-label">echoes long</div>
             </div>
-            
-            <div class="long-card see-more-card" id="longSeeMore">
-                <i class="fas fa-plus-circle"></i>
-                <span>SEE MORE</span>
-                <small>+5 long videos</small>
+            <div class="feature-item video-item" data-id="EUQy7JQjaXo" data-title="Red Dawn" data-meta="6:45 · narrative" data-desc="Short film with red grading throughout.">
+                <img src="https://img.youtube.com/vi/EUQy7JQjaXo/maxresdefault.jpg" alt="feature">
+                <div class="feature-overlay">
+                    <div class="feature-title">Red Dawn</div>
+                    <div class="feature-duration"><i class="fas fa-clock"></i> 6:45</div>
+                </div>
             </div>
         </div>
 
-        <!-- extra long container -->
-        <div id="extraLongsContainer" style="display: none; margin-top: 2rem;">
-            <div class="extra-longs" id="extraLongsGrid">
-                <!-- Long #4 -->
-                <div class="long-card video-card" data-video-id="D6oOaJIY9NY" data-title="metropolis" data-meta="8min · scifi" data-desc="Futuristic city montage.">
-                    <div class="thumbnail">
-                        <img src="https://img.youtube.com/vi/D6oOaJIY9NY/maxresdefault.jpg" alt="thumbnail">
-                    </div>
-                    <div class="card-label">metropolis</div>
+        <!-- Second row - 1 feature + see more -->
+        <div class="feature-row">
+            <div class="feature-item video-item" data-id="EUQy7JQjaXo" data-title="Echoes Long" data-meta="5:12 · experimental" data-desc="Drone shots with atmospheric editing.">
+                <img src="https://img.youtube.com/vi/EUQy7JQjaXo/maxresdefault.jpg" alt="feature">
+                <div class="feature-overlay">
+                    <div class="feature-title">Echoes Long</div>
+                    <div class="feature-duration"><i class="fas fa-clock"></i> 5:12</div>
                 </div>
-                
-                <!-- Long #5 -->
-                <div class="long-card video-card" data-video-id="D6oOaJIY9NY" data-title="desolate" data-meta="7min · mood" data-desc="Desert landscape edit.">
-                    <div class="thumbnail">
-                        <img src="https://img.youtube.com/vi/D6oOaJIY9NY/maxresdefault.jpg" alt="thumbnail">
+            </div>
+            <div class="feature-more" id="featuresMore">
+                <i class="fas fa-plus-circle"></i>
+                <span>More</span>
+            </div>
+        </div>
+
+        <!-- Extra Features (hidden) -->
+        <div id="extraFeatures" style="display: none;">
+            <div class="extra-features" id="extraFeaturesGrid">
+                <div class="feature-item video-item" data-id="EUQy7JQjaXo" data-title="Metropolis" data-meta="8:12 · scifi" data-desc="Futuristic city montage.">
+                    <img src="https://img.youtube.com/vi/EUQy7JQjaXo/maxresdefault.jpg" alt="feature">
+                    <div class="feature-overlay">
+                        <div class="feature-title">Metropolis</div>
+                        <div class="feature-duration"><i class="fas fa-clock"></i> 8:12</div>
                     </div>
-                    <div class="card-label">desolate</div>
                 </div>
-                
-                <!-- Long #6 -->
-                <div class="long-card video-card" data-video-id="D6oOaJIY9NY" data-title="cyber structure" data-meta="5min · cgi" data-desc="3D architecture.">
-                    <div class="thumbnail">
-                        <img src="https://img.youtube.com/vi/D6oOaJIY9NY/maxresdefault.jpg" alt="thumbnail">
+                <div class="feature-item video-item" data-id="EUQy7JQjaXo" data-title="Desolate" data-meta="7:30 · mood" data-desc="Desert landscape with ambient tones.">
+                    <img src="https://img.youtube.com/vi/EUQy7JQjaXo/maxresdefault.jpg" alt="feature">
+                    <div class="feature-overlay">
+                        <div class="feature-title">Desolate</div>
+                        <div class="feature-duration"><i class="fas fa-clock"></i> 7:30</div>
                     </div>
-                    <div class="card-label">cyber structure</div>
                 </div>
-                
-                <!-- Long #7 -->
-                <div class="long-card video-card" data-video-id="D6oOaJIY9NY" data-title="neon noir" data-meta="9min · crime" data-desc="Neon soaked noir edit.">
-                    <div class="thumbnail">
-                        <img src="https://img.youtube.com/vi/D6oOaJIY9NY/maxresdefault.jpg" alt="thumbnail">
+                <div class="feature-item video-item" data-id="EUQy7JQjaXo" data-title="Cyber Structure" data-meta="5:45 · cgi" data-desc="3D architectural visualization.">
+                    <img src="https://img.youtube.com/vi/EUQy7JQjaXo/maxresdefault.jpg" alt="feature">
+                    <div class="feature-overlay">
+                        <div class="feature-title">Cyber Structure</div>
+                        <div class="feature-duration"><i class="fas fa-clock"></i> 5:45</div>
                     </div>
-                    <div class="card-label">neon noir</div>
                 </div>
-                
-                <!-- Long #8 -->
-                <div class="long-card video-card" data-video-id="D6oOaJIY9NY" data-title="last light" data-meta="6min · drama" data-desc="Golden hour visuals.">
-                    <div class="thumbnail">
-                        <img src="https://img.youtube.com/vi/D6oOaJIY9NY/maxresdefault.jpg" alt="thumbnail">
+                <div class="feature-item video-item" data-id="EUQy7JQjaXo" data-title="Neon Noir" data-meta="9:15 · crime" data-desc="Neon soaked noir atmosphere.">
+                    <img src="https://img.youtube.com/vi/EUQy7JQjaXo/maxresdefault.jpg" alt="feature">
+                    <div class="feature-overlay">
+                        <div class="feature-title">Neon Noir</div>
+                        <div class="feature-duration"><i class="fas fa-clock"></i> 9:15</div>
                     </div>
-                    <div class="card-label">last light</div>
                 </div>
-                
-                <div class="long-card see-less-card" id="longSeeLess">
+                <div class="feature-item video-item" data-id="EUQy7JQjaXo" data-title="Last Light" data-meta="6:20 · drama" data-desc="Golden hour visuals.">
+                    <img src="https://img.youtube.com/vi/EUQy7JQjaXo/maxresdefault.jpg" alt="feature">
+                    <div class="feature-overlay">
+                        <div class="feature-title">Last Light</div>
+                        <div class="feature-duration"><i class="fas fa-clock"></i> 6:20</div>
+                    </div>
+                </div>
+                <div class="see-less" id="featuresLess">
                     <i class="fas fa-chevron-up"></i>
-                    <span>SEE LESS</span>
+                    <span>Collapse</span>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- REMOVED footer text -->
 
     <script>
-        // CURSOR GLOW - OPTIMIZED
-        const glow = document.querySelector(".cursor-glow");
-        let mouseX = 0, mouseY = 0;
-        let currentX = 0, currentY = 0;
-        
-        document.addEventListener("mousemove", e => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
-        
-        function animateGlow() {
-            currentX += (mouseX - currentX) * 0.1;
-            currentY += (mouseY - currentY) * 0.1;
-            glow.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) translate(-50%, -50%)`;
-            requestAnimationFrame(animateGlow);
-        }
+        // CURSOR (disabled on mobile)
+        const cursor = document.querySelector('.cursor');
         
         if (window.innerWidth > 768) {
-            requestAnimationFrame(animateGlow);
-        } else {
-            document.addEventListener("mousemove", e => {
-                glow.style.left = e.clientX + "px";
-                glow.style.top = e.clientY + "px";
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
             });
         }
 
-        (function() {
-            // back button
-            document.getElementById('backBtn').addEventListener('click', () => {
-                window.location.href = 'xeet-studio-editing.html';
+        // VIDEO PLAYER FUNCTION
+        const videoPlayer = document.getElementById('videoPlayer');
+        const videoTitle = document.getElementById('videoTitle');
+        const videoMeta = document.getElementById('videoMeta');
+        const videoDesc = document.getElementById('videoDesc');
+
+        function playVideo(id, title, meta, desc) {
+            videoPlayer.innerHTML = `
+                <iframe width="100%" height="100%" 
+                    src="https://www.youtube.com/embed/${id}?autoplay=1&rel=0" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen>
+                </iframe>
+            `;
+            videoTitle.innerText = title;
+            videoMeta.innerText = meta;
+            videoDesc.innerText = desc;
+        }
+
+        // ATTACH CLICK LISTENERS
+        function attachVideoListeners() {
+            document.querySelectorAll('.video-item').forEach(item => {
+                item.addEventListener('click', () => {
+                    playVideo(
+                        item.dataset.id,
+                        item.dataset.title,
+                        item.dataset.meta,
+                        item.dataset.desc
+                    );
+                });
             });
+        }
 
-            // video player
-            const playerSection = document.getElementById('playerSection');
-            const videoPlayer = document.getElementById('videoPlayer');
-            const videoTitle = document.getElementById('videoTitle');
-            const videoMeta = document.getElementById('videoMeta');
-            const videoDesc = document.getElementById('videoDesc');
-
-            function playVideo(videoId, title, meta, desc) {
-                videoTitle.innerText = title || 'xeet edit';
-                videoMeta.innerText = meta || '4k · 0:20';
-                videoDesc.innerText = desc || 'Cinematic edit with red accents.';
-                
-                videoPlayer.innerHTML = `
-                    <iframe width="100%" height="100%" 
-                        src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0" 
-                        frameborder="0" 
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                        allowfullscreen>
-                    </iframe>
-                `;
-
-                playerSection.scrollIntoView({ 
-                    behavior: 'smooth', 
-                    block: 'start' 
-                });
-
-                playerSection.classList.add('player-highlight');
-                setTimeout(() => {
-                    playerSection.classList.remove('player-highlight');
-                }, 1000);
-            }
-
-            function getVideoIdFromUrl() {
-                const urlParams = new URLSearchParams(window.location.search);
-                return urlParams.get('video');
-            }
-
-            function attachCardListeners() {
-                document.querySelectorAll('.video-card').forEach(card => {
-                    if (card.classList.contains('see-more-card') || card.classList.contains('see-less-card')) return;
-                    
-                    card.removeEventListener('click', card.clickHandler);
-                    card.clickHandler = (e) => {
-                        e.stopPropagation();
-                        const videoId = card.dataset.videoId || 'D6oOaJIY9NY';
-                        const title = card.dataset.title || 'xeet edit';
-                        const meta = card.dataset.meta || '4k · 0:20';
-                        const desc = card.dataset.desc || 'Cinematic edit with red accents.';
-                        playVideo(videoId, title, meta, desc);
-                    };
-                    card.addEventListener('click', card.clickHandler);
-                });
-            }
-
-            const urlVideoId = getVideoIdFromUrl();
-            if (urlVideoId) {
-                const cards = document.querySelectorAll('.video-card');
-                let found = false;
-                for (let card of cards) {
-                    if (card.dataset.videoId === urlVideoId) {
-                        playVideo(
-                            card.dataset.videoId,
-                            card.dataset.title,
-                            card.dataset.meta,
-                            card.dataset.desc
-                        );
-                        found = true;
-                        break;
-                    }
-                }
-                if (!found) {
-                    playVideo(urlVideoId, 'XEET EDIT', '4k · 0:23', 'Check out this amazing edit!');
+        // CHECK URL FOR VIDEO ID
+        const urlParams = new URLSearchParams(window.location.search);
+        const videoId = urlParams.get('video');
+        if (videoId) {
+            const items = document.querySelectorAll('.video-item');
+            for (let item of items) {
+                if (item.dataset.id === videoId) {
+                    playVideo(
+                        item.dataset.id,
+                        item.dataset.title,
+                        item.dataset.meta,
+                        item.dataset.desc
+                    );
+                    break;
                 }
             }
+        }
 
-            // SHORT SECTION
-            const shortSeeMore = document.getElementById('shortSeeMore');
-            const extraContainer = document.getElementById('extraShortsContainer');
-            const shortSeeLess = document.getElementById('shortSeeLess');
+        // SHORTS EXPAND/COLLAPSE
+        const shortsMore = document.getElementById('shortsMore');
+        const extraShorts = document.getElementById('extraShorts');
+        const shortsLess = document.getElementById('shortsLess');
 
-            if (shortSeeMore) {
-                shortSeeMore.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    shortSeeMore.style.display = 'none';
-                    extraContainer.style.display = 'block';
-                    attachCardListeners();
-                });
-            }
+        if (shortsMore) {
+            shortsMore.addEventListener('click', () => {
+                shortsMore.style.display = 'none';
+                extraShorts.style.display = 'block';
+                attachVideoListeners();
+            });
+        }
 
-            if (shortSeeLess) {
-                shortSeeLess.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    extraContainer.style.display = 'none';
-                    shortSeeMore.style.display = 'flex';
-                });
-            }
+        if (shortsLess) {
+            shortsLess.addEventListener('click', () => {
+                extraShorts.style.display = 'none';
+                shortsMore.style.display = 'flex';
+            });
+        }
 
-            // LONG SECTION
-            const longSeeMore = document.getElementById('longSeeMore');
-            const extraLongs = document.getElementById('extraLongsContainer');
-            const longSeeLess = document.getElementById('longSeeLess');
+        // FEATURES EXPAND/COLLAPSE
+        const featuresMore = document.getElementById('featuresMore');
+        const extraFeatures = document.getElementById('extraFeatures');
+        const featuresLess = document.getElementById('featuresLess');
 
-            if (longSeeMore) {
-                longSeeMore.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    longSeeMore.style.display = 'none';
-                    extraLongs.style.display = 'block';
-                    attachCardListeners();
-                });
-            }
+        if (featuresMore) {
+            featuresMore.addEventListener('click', () => {
+                featuresMore.style.display = 'none';
+                extraFeatures.style.display = 'block';
+                attachVideoListeners();
+            });
+        }
 
-            if (longSeeLess) {
-                longSeeLess.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    extraLongs.style.display = 'none';
-                    longSeeMore.style.display = 'flex';
-                });
-            }
+        if (featuresLess) {
+            featuresLess.addEventListener('click', () => {
+                extraFeatures.style.display = 'none';
+                featuresMore.style.display = 'flex';
+            });
+        }
 
-            attachCardListeners();
-        })();
+        // INITIAL ATTACH
+        attachVideoListeners();
     </script>
 </body>
 </html>
