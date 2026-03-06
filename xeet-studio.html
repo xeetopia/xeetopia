@@ -316,7 +316,77 @@ section{padding:100px 8%}
 .vlink:hover{text-decoration:underline}
 .vlink::after{content:'↗'}
 
-/* WORK GRID */
+/* LONG-FORM GRID */
+.longform-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+.lf-card{
+  background:var(--s2);border:1px solid var(--border);overflow:hidden;
+  transition:border-color .25s;cursor:pointer;
+}
+.lf-card:hover{border-color:rgba(212,255,0,0.3)}
+.lf-thumb{
+  aspect-ratio:16/9;overflow:hidden;position:relative;
+  background:var(--s3);display:flex;align-items:center;justify-content:center;
+}
+.lf-thumb img{
+  width:100%;height:100%;object-fit:cover;
+  filter:grayscale(30%);transition:transform .4s,filter .4s;
+}
+.lf-card:hover .lf-thumb img{transform:scale(1.06);filter:grayscale(0%)}
+.lf-thumb-ph{font-family:"Bebas Neue",cursive;font-size:13px;letter-spacing:3px;color:var(--dim);}
+.lf-play{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:40px;height:40px;background:rgba(212,255,0,0.9);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transition:opacity .25s;
+}
+.lf-play::after{
+  content:'';width:0;height:0;
+  border-top:7px solid transparent;border-bottom:7px solid transparent;
+  border-left:12px solid #000;margin-left:3px;
+}
+.lf-card:hover .lf-play{opacity:1}
+.lf-info{padding:18px 20px}
+.lf-num{font-family:"Bebas Neue",cursive;font-size:13px;letter-spacing:2px;color:var(--acc);margin-bottom:4px}
+.lf-title{font-size:13.5px;font-weight:500;margin-bottom:8px}
+.lf-tags{display:flex;gap:6px;flex-wrap:wrap}
+.lf-tag{font-size:9px;letter-spacing:1.5px;text-transform:uppercase;padding:3px 8px;border:1px solid var(--border);color:var(--dim)}
+
+/* SHORTS GRID */
+.shorts-grid{
+  display:grid;grid-template-columns:repeat(5,1fr);gap:2px;
+}
+.short-card{
+  background:var(--s2);border:1px solid var(--border);overflow:hidden;
+  transition:border-color .25s;cursor:pointer;
+}
+.short-card:hover{border-color:rgba(212,255,0,0.3)}
+.short-thumb{
+  aspect-ratio:9/16;overflow:hidden;position:relative;
+  background:var(--s3);display:flex;align-items:center;justify-content:center;
+}
+.short-thumb img{
+  width:100%;height:100%;object-fit:cover;
+  filter:grayscale(30%);transition:transform .4s,filter .4s;
+}
+.short-card:hover .short-thumb img{transform:scale(1.06);filter:grayscale(0%)}
+.short-thumb-ph{font-family:"Bebas Neue",cursive;font-size:12px;letter-spacing:3px;color:var(--dim);text-align:center;padding:10px}
+.short-play{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:36px;height:36px;background:rgba(212,255,0,0.9);
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transition:opacity .25s;
+}
+.short-play::after{
+  content:'';width:0;height:0;
+  border-top:6px solid transparent;border-bottom:6px solid transparent;
+  border-left:10px solid #000;margin-left:3px;
+}
+.short-card:hover .short-play{opacity:1}
+.short-info{padding:12px 14px}
+.short-num{font-family:"Bebas Neue",cursive;font-size:12px;letter-spacing:2px;color:var(--acc);margin-bottom:3px}
+.short-title{font-size:12px;font-weight:500}
+
+/* WORK GRID (legacy, keep for compat) */
 .wgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
 .wcard{
   background:var(--s2);border:1px solid var(--border);overflow:hidden;
@@ -416,6 +486,8 @@ footer{
   #about{grid-template-columns:1fr;gap:52px}
   .a-cards{grid-template-columns:1fr 1fr}
   .wgrid{grid-template-columns:1fr 1fr}
+  .longform-grid{grid-template-columns:1fr 1fr}
+  .shorts-grid{grid-template-columns:repeat(3,1fr)}
 }
 @media(max-width:600px){
   nav{padding:16px 5%}
@@ -424,6 +496,8 @@ footer{
   .cta-row{flex-direction:column}
   .a-cards{grid-template-columns:1fr}
   .wgrid{grid-template-columns:1fr}
+  .longform-grid{grid-template-columns:1fr}
+  .shorts-grid{grid-template-columns:repeat(2,1fr)}
   .vmeta{grid-template-columns:1fr}
   footer{flex-direction:column;gap:10px;text-align:center}
 }
@@ -438,7 +512,7 @@ footer{
     <a href="#about">About</a>
     <a href="#works">Works</a>
     <a href="#contact">Contact</a>
-    <a href="mailto:goxeeet@gmail.com" class="hire-btn">Hire Me</a>
+    <a href="/cdn-cgi/l/email-protection#b8dfd7c0ddddddccf8dfd5d9d1d496dbd7d5" class="hire-btn">Hire Me</a>
   </div>
 </nav>
 
@@ -591,40 +665,103 @@ footer{
     </div>
   </div>
 
-  <!-- MORE WORKS GRID -->
-  <div class="more-label fi">More Projects</div>
-  <div class="wgrid fi">
-    <div class="wcard">
-      <div class="wthumb">
-        <img src="https://img.youtube.com/vi/EUQy7JQjaXo/mqdefault.jpg" alt="">
-        <div class="wplay"></div>
+  <!-- LONG-FORM VIDEOS -->
+  <div class="more-label fi">Long-form Projects</div>
+  <div class="longform-grid fi">
+    <!-- LF Slot 1 -->
+    <div class="lf-card" onclick="loadVideo('EUQy7JQjaXo','Cinematic Edit — Sample Project')">
+      <div class="lf-thumb">
+        <img src="https://img.youtube.com/vi/EUQy7JQjaXo/mqdefault.jpg"
+             onerror="this.src='https://img.youtube.com/vi/EUQy7JQjaXo/hqdefault.jpg'" alt="">
+        <div class="lf-play"></div>
       </div>
-      <div class="winfo">
-        <div class="wnum">01</div>
-        <div class="wtitle">YouTube Long-form Edit</div>
-        <div class="wtags"><span class="wtag">YouTube</span><span class="wtag">Vlog</span></div>
-      </div>
-    </div>
-    <div class="wcard">
-      <div class="wthumb" style="background:var(--s3)">
-        <div class="wthumb-ph">Coming Soon</div>
-        <div class="wplay"></div>
-      </div>
-      <div class="winfo">
-        <div class="wnum">02</div>
-        <div class="wtitle">Short-form / Reels Edit</div>
-        <div class="wtags"><span class="wtag">Reels</span><span class="wtag">Shorts</span></div>
+      <div class="lf-info">
+        <div class="lf-num">01</div>
+        <div class="lf-title">Cinematic Edit — Sample Project</div>
+        <div class="lf-tags"><span class="lf-tag">Cinematic</span><span class="lf-tag">YouTube</span></div>
       </div>
     </div>
-    <div class="wcard">
-      <div class="wthumb" style="background:var(--s3)">
-        <div class="wthumb-ph">Coming Soon</div>
-        <div class="wplay"></div>
+    <!-- LF Slot 2 -->
+    <div class="lf-card" onclick="loadVideo('iF_IOs7IVpA','YouTube Long-form Edit')">
+      <div class="lf-thumb">
+        <img src="https://img.youtube.com/vi/iF_IOs7IVpA/mqdefault.jpg"
+             onerror="this.src='https://img.youtube.com/vi/iF_IOs7IVpA/hqdefault.jpg'" alt="">
+        <div class="lf-play"></div>
       </div>
-      <div class="winfo">
-        <div class="wnum">03</div>
-        <div class="wtitle">Brand / Commercial</div>
-        <div class="wtags"><span class="wtag">Brand</span><span class="wtag">Ad</span></div>
+      <div class="lf-info">
+        <div class="lf-num">02</div>
+        <div class="lf-title">YouTube Long-form Edit</div>
+        <div class="lf-tags"><span class="lf-tag">YouTube</span><span class="lf-tag">Vlog</span></div>
+      </div>
+    </div>
+    <!-- LF Slot 3 — Placeholder -->
+    <div class="lf-card" style="cursor:default">
+      <div class="lf-thumb">
+        <div class="lf-thumb-ph">Coming Soon</div>
+      </div>
+      <div class="lf-info">
+        <div class="lf-num">03</div>
+        <div class="lf-title">Brand / Commercial Edit</div>
+        <div class="lf-tags"><span class="lf-tag">Brand</span><span class="lf-tag">Ad</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SHORTS -->
+  <div class="more-label fi" style="margin-top:52px">Shorts</div>
+  <div class="shorts-grid fi">
+    <!-- Short Slot 1 -->
+    <div class="short-card" onclick="loadVideo('b-dToA01n8o','Short Edit #1')">
+      <div class="short-thumb">
+        <img src="https://img.youtube.com/vi/b-dToA01n8o/mqdefault.jpg"
+             onerror="this.src='https://img.youtube.com/vi/b-dToA01n8o/hqdefault.jpg'" alt="">
+        <div class="short-play"></div>
+      </div>
+      <div class="short-info">
+        <div class="short-num">01</div>
+        <div class="short-title">Short Edit #1</div>
+      </div>
+    </div>
+    <!-- Short Slot 2 -->
+    <div class="short-card" onclick="loadVideo('D6oOaJIY9NY','Short Edit #2')">
+      <div class="short-thumb">
+        <img src="https://img.youtube.com/vi/D6oOaJIY9NY/mqdefault.jpg"
+             onerror="this.src='https://img.youtube.com/vi/D6oOaJIY9NY/hqdefault.jpg'" alt="">
+        <div class="short-play"></div>
+      </div>
+      <div class="short-info">
+        <div class="short-num">02</div>
+        <div class="short-title">Short Edit #2</div>
+      </div>
+    </div>
+    <!-- Short Slot 3 — Placeholder -->
+    <div class="short-card" style="cursor:default">
+      <div class="short-thumb">
+        <div class="short-thumb-ph">Coming Soon</div>
+      </div>
+      <div class="short-info">
+        <div class="short-num">03</div>
+        <div class="short-title">Short Edit #3</div>
+      </div>
+    </div>
+    <!-- Short Slot 4 — Placeholder -->
+    <div class="short-card" style="cursor:default">
+      <div class="short-thumb">
+        <div class="short-thumb-ph">Coming Soon</div>
+      </div>
+      <div class="short-info">
+        <div class="short-num">04</div>
+        <div class="short-title">Short Edit #4</div>
+      </div>
+    </div>
+    <!-- Short Slot 5 — Placeholder -->
+    <div class="short-card" style="cursor:default">
+      <div class="short-thumb">
+        <div class="short-thumb-ph">Coming Soon</div>
+      </div>
+      <div class="short-info">
+        <div class="short-num">05</div>
+        <div class="short-title">Short Edit #5</div>
       </div>
     </div>
   </div>
@@ -637,7 +774,7 @@ footer{
     <div class="stag fi">Get In Touch</div>
     <h2 class="ch fi">LET'S<br>CREATE.</h2>
     <p class="cs fi">Have a project? I'd love to hear about it. Drop me a message and let's build something great.</p>
-    <a href="mailto:goxeeet@gmail.com" class="cemail fi">GOXEEET@GMAIL.COM</a>
+    <a href="/cdn-cgi/l/email-protection#41262e392424243501262c20282d6f222e2c" class="cemail fi"><span class="__cf_email__" data-cfemail="43040c1b0606061703040e020a0f6d000c0e">[email&#160;protected]</span></a>
     <div class="socials fi">
       <a href="https://instagram.com/xeetstudio" class="soc" title="Instagram">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
@@ -658,7 +795,7 @@ footer{
   <span class="fcopy">© 2025 XEET — All rights reserved</span>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // MARQUEE
 const skills = ["Video Editing","Color Grading","YouTube Editing","Shorts & Reels","Motion Graphics","Premiere Pro","Cinematic Storytelling","Fast Turnaround","Story First"];
 const t = document.getElementById("mtrack");
@@ -699,27 +836,33 @@ document.querySelectorAll(".sk-fill[data-w]").forEach(b=>{
 });
 
 // PLAY VIDEO
-function playFeat(){
+function loadVideo(videoId, title){
   const thumb = document.getElementById("featThumb");
   const iLayer = document.getElementById("iframeLayer");
   const frame = document.getElementById("ytFrame");
 
-  frame.src = "https://www.youtube-nocookie.com/embed/EUQy7JQjaXo?autoplay=1&rel=0&modestbranding=1&color=white";
+  // Update featured video meta
+  const vt = document.querySelector(".vt");
+  const vlink = document.querySelector(".vlink");
+  if(vt) vt.textContent = title || "Video";
+  if(vlink){ vlink.href = "https://youtu.be/"+videoId; vlink.setAttribute("href","https://youtu.be/"+videoId); }
+
+  // Load iframe
+  frame.src = "https://www.youtube-nocookie.com/embed/"+videoId+"?autoplay=1&rel=0&modestbranding=1&color=white";
 
   // hide thumbnail elements
   document.getElementById("featImg").style.display = "none";
   document.getElementById("playRing").style.display = "none";
-  thumb.querySelector(".play-tooltip").style.display = "none";
-  thumb.style.cursor = "default";
-  thumb.onclick = null;
-
-  // show iframe
+  const tooltip = thumb.querySelector(".play-tooltip");
+  if(tooltip) tooltip.style.display = "none";
   iLayer.style.display = "block";
-  iLayer.style.position = "relative";
-  iLayer.style.width = "100%";
-  iLayer.style.aspectRatio = "16/9";
-  iLayer.style.height = "auto";
+
+  // Scroll to featured player
+  document.getElementById("featThumb").scrollIntoView({behavior:"smooth", block:"center"});
 }
-</script>
+
+function playFeat(){
+  loadVideo("EUQy7JQjaXo","Cinematic Edit — Sample Project");
+}</script>
 </body>
 </html>
