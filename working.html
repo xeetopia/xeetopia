@@ -4,415 +4,835 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
     <title>COMING SOON · XEETOPIA</title>
-    <!-- Font Awesome for subtle icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Serif+Display:ital@0;1&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        /* ===== PURE FUTURISTIC COMING SOON ===== */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --bg: #0a0a0a;
+            --bg2: #111111;
+            --surface: #161616;
+            --border: rgba(255,255,255,0.07);
+            --border-bright: rgba(255,255,255,0.14);
+            --orange: #ff7c2a;
+            --yellow: #ffd166;
+            --cyan: #06d6c7;
+            --pink: #ff4dab;
+            --purple: #a259ff;
+            --text: #f0f0f0;
+            --muted: #888;
+            --dimmer: #555;
         }
 
-        /* Clean, bold palette */
-        :root {
-            --primary: #ff2a2a;
-            --primary-glow: #ff2a2a80;
-            --primary-soft: #ff2a2a20;
-            --bg-deep: #000000;
-            --bg-soft: #0a0a0a;
-            --text-bright: #ffffff;
-            --text-muted: #aaaaaa;
-            --border-glow: #ff2a2a40;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Outfit', sans-serif;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background: var(--bg-deep);
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            color: var(--text-bright);
-            position: relative;
             overflow-x: hidden;
         }
 
-        /* ===== BOLD BACKGROUND ===== */
-        .bg-glow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 30% 40%, rgba(255, 42, 42, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 70% 60%, rgba(255, 42, 42, 0.1) 0%, transparent 50%),
-                linear-gradient(145deg, #000000 0%, #0a0a0a 100%);
-            z-index: -1;
+        /* ── BACKGROUND ── */
+        .bg-layer {
+            position: fixed; inset: 0; z-index: 0; pointer-events: none;
+            background:
+                radial-gradient(ellipse 60% 50% at 15% 20%, rgba(255,124,42,0.07) 0%, transparent 70%),
+                radial-gradient(ellipse 50% 40% at 85% 80%, rgba(6,214,199,0.06) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 40% at 50% 50%, rgba(162,89,255,0.04) 0%, transparent 70%);
+        }
+        .noise {
+            position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: 0.025;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            background-size: 200px 200px;
         }
 
-        /* ===== SIMPLE LINES ===== */
-        .line {
-            position: fixed;
-            background: linear-gradient(90deg, transparent, var(--border-glow), transparent);
-            height: 1px;
-            width: 100%;
-            left: 0;
-            z-index: 0;
-        }
-
-        .line-top {
-            top: 15%;
-            animation: linePulse 4s infinite;
-        }
-
-        .line-bottom {
-            bottom: 15%;
-            animation: linePulse 4s infinite reverse;
-        }
-
-        @keyframes linePulse {
-            0%, 100% { opacity: 0.3; transform: scaleX(1); }
-            50% { opacity: 0.8; transform: scaleX(1.1); }
-        }
-
-        /* ===== SIMPLE DOTS ===== */
-        .dot-pattern {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            background-image: radial-gradient(var(--primary-soft) 1px, transparent 1px);
-            background-size: 60px 60px;
-            opacity: 0.3;
-            pointer-events: none;
-            z-index: 0;
-            animation: dotsMove 20s linear infinite;
-        }
-
-        @keyframes dotsMove {
-            0% { transform: translate(0, 0); }
-            100% { transform: translate(30px, 30px); }
-        }
-
-        /* ===== CLEAN CURSOR GLOW ===== */
-        .cursor-glow {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: min(300px, 40vw);
-            height: min(300px, 40vw);
-            background: radial-gradient(circle, rgba(255, 42, 42, 0.2) 0%, transparent 70%);
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            z-index: 9999;
-            filter: blur(50px);
-            mix-blend-mode: screen;
-            border-radius: 50%;
-        }
-
-        /* ===== MAIN CARD - BOLD & CLEAN ===== */
-        .coming-soon-card {
-            text-align: center;
-            background: rgba(10, 10, 10, 0.7);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border: 1px solid var(--border-glow);
-            border-radius: 40px;
-            padding: 5rem 6rem;
-            position: relative;
-            z-index: 100;
-            box-shadow: 
-                0 30px 60px -30px rgba(0,0,0,0.9),
-                0 0 0 1px rgba(255,42,42,0.2) inset,
-                0 0 60px rgba(255,42,42,0.2);
-            max-width: 900px;
-            width: 90%;
-            margin: 20px;
-        }
-
-        /* ===== BIG BOLD ICON ===== */
-        .icon-large {
-            font-size: 6rem;
-            color: var(--primary);
-            margin-bottom: 1.5rem;
-            filter: drop-shadow(0 0 30px var(--primary));
-            opacity: 0.9;
-            animation: iconFloat 4s ease-in-out infinite;
-        }
-
-        @keyframes iconFloat {
-            0%, 100% { transform: translateY(0) scale(1); }
-            50% { transform: translateY(-10px) scale(1.05); }
-        }
-
-        /* ===== COMING SOON TEXT - BIG & BOLD ===== */
-        .coming-soon {
-            font-size: 6rem;
-            font-weight: 900;
-            letter-spacing: 12px;
-            color: white;
-            text-transform: uppercase;
-            line-height: 1.2;
-            margin-bottom: 1rem;
-            text-shadow: 
-                0 0 30px var(--primary),
-                0 0 60px rgba(255,42,42,0.5);
-            animation: textGlow 3s ease-in-out infinite;
-        }
-
-        @keyframes textGlow {
-            0%, 100% { text-shadow: 0 0 30px var(--primary), 0 0 60px rgba(255,42,42,0.5); }
-            50% { text-shadow: 0 0 50px var(--primary), 0 0 90px var(--primary), 0 0 120px rgba(255,42,42,0.8); }
-        }
-
-        /* ===== UNDER CONSTRUCTION BADGE ===== */
-        .badge {
-            display: inline-block;
-            background: rgba(255, 42, 42, 0.1);
-            border: 1px solid var(--border-glow);
-            padding: 10px 30px;
-            border-radius: 50px;
-            margin: 2rem 0;
-            font-size: 1rem;
-            letter-spacing: 4px;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            backdrop-filter: blur(5px);
-        }
-
-        .badge i {
-            color: var(--primary);
-            margin: 0 8px;
-            animation: badgePulse 2s infinite;
-        }
-
-        @keyframes badgePulse {
-            0%, 100% { opacity: 0.7; }
-            50% { opacity: 1; transform: scale(1.1); }
-        }
-
-        /* ===== SIMPLE DESCRIPTION ===== */
-        .message {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            margin: 2rem 0 3rem;
-            letter-spacing: 1px;
-            line-height: 1.8;
-            max-width: 600px;
-        }
-
-        /* ===== PROGRESS BAR - SIMPLE ===== */
-        .progress-container {
-            width: 300px;
-            height: 3px;
-            background: rgba(255,255,255,0.1);
-            margin: 2rem auto;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .progress-bar {
-            width: 65%;
-            height: 100%;
-            background: linear-gradient(90deg, var(--primary), rgba(255,42,42,0.5));
-            border-radius: 10px;
-            animation: progressMove 3s ease-in-out infinite;
-        }
-
-        @keyframes progressMove {
-            0% { width: 30%; opacity: 0.8; }
-            50% { width: 80%; opacity: 1; }
-            100% { width: 30%; opacity: 0.8; }
-        }
-
-        /* ===== BACK BUTTON - BOLD & CLEAN ===== */
-        .back-btn {
-            display: inline-flex;
+        /* ── LAYOUT ── */
+        .page {
+            position: relative; z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            justify-content: center;
-            gap: 12px;
-            padding: 18px 50px;
-            background: transparent;
-            color: white;
+            justify-content: flex-start;
+            padding: 48px 20px 60px;
+            gap: 0;
+        }
+
+        /* ── NAV ── */
+        .nav {
+            width: 100%; max-width: 900px;
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 48px;
+        }
+        .nav-logo {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.4rem;
+            letter-spacing: 0.02em;
+            color: var(--text);
             text-decoration: none;
-            border-radius: 60px;
-            transition: all 0.4s ease;
-            font-weight: 500;
-            font-size: 1.2rem;
-            letter-spacing: 2px;
-            border: 2px solid var(--border-glow);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            margin-top: 2rem;
-            position: relative;
+        }
+        .nav-logo span { color: var(--orange); }
+        .back-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 0.8rem; font-weight: 600; letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--muted);
+            text-decoration: none;
+            border: 1px solid var(--border);
+            padding: 8px 18px; border-radius: 100px;
+            transition: all 0.25s;
+        }
+        .back-link:hover { color: var(--text); border-color: var(--border-bright); background: rgba(255,255,255,0.04); }
+        .back-link i { font-size: 0.7rem; transition: transform 0.2s; }
+        .back-link:hover i { transform: translateX(-3px); }
+
+        /* ── TOP SECTION ── */
+        .top-section {
+            width: 100%; max-width: 900px;
+            text-align: center;
+            margin-bottom: 52px;
+        }
+
+        .eyebrow {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+            color: var(--orange);
+            background: rgba(255,124,42,0.1);
+            border: 1px solid rgba(255,124,42,0.2);
+            padding: 6px 16px; border-radius: 100px;
+            margin-bottom: 28px;
+        }
+        .eyebrow span { width: 6px; height: 6px; border-radius: 50%; background: var(--orange); animation: blink 1.4s infinite; }
+        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+
+        .main-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(3.5rem, 10vw, 7rem);
+            font-weight: 900;
+            line-height: 1;
+            letter-spacing: -0.03em;
+            color: var(--text);
+            margin-bottom: 20px;
+        }
+        .main-title .accent { color: var(--orange); }
+
+        .subtitle {
+            font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+            color: var(--muted);
+            font-weight: 400;
+            line-height: 1.7;
+            max-width: 520px;
+            margin: 0 auto 32px;
+        }
+
+        /* progress */
+        .progress-row {
+            display: flex; align-items: center; gap: 14px;
+            justify-content: center; margin-bottom: 0;
+        }
+        .progress-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem; letter-spacing: 0.1em; color: var(--dimmer);
+        }
+        .progress-track {
+            width: 180px; height: 2px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 99px; overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--orange), var(--yellow));
+            border-radius: 99px;
+            width: 0%;
+            animation: fillProgress 2.2s ease-out 0.5s forwards;
+        }
+        @keyframes fillProgress { to { width: 68%; } }
+        .progress-pct {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem; letter-spacing: 0.08em; color: var(--orange);
+        }
+
+        /* ── DIVIDER ── */
+        .divider {
+            width: 100%; max-width: 900px;
+            display: flex; align-items: center; gap: 16px;
+            margin-bottom: 40px;
+        }
+        .divider-line { flex: 1; height: 1px; background: var(--border); }
+        .divider-text {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+            color: var(--dimmer);
+            white-space: nowrap;
+        }
+        .divider-text span { color: var(--cyan); }
+
+        /* ── GAME SECTION ── */
+        .game-section {
+            width: 100%; max-width: 900px;
+        }
+
+        .game-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 24px;
             overflow: hidden;
         }
 
-        .back-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,42,42,0.2), transparent);
-            transition: left 0.6s;
+        .game-header {
+            padding: 20px 28px;
+            border-bottom: 1px solid var(--border);
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 12px;
+        }
+        .game-title-row {
+            display: flex; align-items: center; gap: 12px;
+        }
+        .game-icon {
+            width: 36px; height: 36px; border-radius: 10px;
+            background: linear-gradient(135deg, rgba(6,214,199,0.15), rgba(162,89,255,0.15));
+            border: 1px solid rgba(6,214,199,0.2);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1rem; color: var(--cyan);
+        }
+        .game-name {
+            font-weight: 700; font-size: 1rem; letter-spacing: 0.02em;
+        }
+        .game-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase;
+            color: var(--cyan);
+            background: rgba(6,214,199,0.08);
+            border: 1px solid rgba(6,214,199,0.15);
+            padding: 3px 10px; border-radius: 100px;
+        }
+        .score-display {
+            display: flex; align-items: center; gap: 20px;
+        }
+        .score-item { text-align: center; }
+        .score-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.2rem; font-weight: 700;
+            color: var(--text); line-height: 1;
+        }
+        .score-num.highlight { color: var(--yellow); }
+        .score-lbl {
+            font-size: 0.65rem; letter-spacing: 0.1em; text-transform: uppercase;
+            color: var(--dimmer); margin-top: 2px;
         }
 
-        .back-btn:hover {
-            border-color: var(--primary);
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px -15px var(--primary);
-            background: rgba(255,42,42,0.1);
+        /* ── CANVAS WRAPPER ── */
+        .canvas-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+            background: #0e0e0e;
+            position: relative;
+        }
+        #gameCanvas {
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            display: block;
+            max-width: 100%;
+            touch-action: none;
         }
 
-        .back-btn:hover::before {
-            left: 100%;
+        /* overlay */
+        .game-overlay {
+            position: absolute; inset: 24px;
+            border-radius: 12px;
+            background: rgba(10,10,10,0.92);
+            backdrop-filter: blur(8px);
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            gap: 16px;
+            transition: opacity 0.3s;
         }
-
-        .back-btn i {
-            transition: transform 0.3s;
+        .game-overlay.hidden { opacity: 0; pointer-events: none; }
+        .overlay-icon { font-size: 2.5rem; color: var(--cyan); }
+        .overlay-title {
+            font-weight: 800; font-size: clamp(1.5rem, 5vw, 2.2rem);
+            letter-spacing: -0.02em;
         }
-
-        .back-btn:hover i {
-            transform: translateX(-5px);
+        .overlay-sub {
+            font-size: 0.85rem; color: var(--muted);
+            text-align: center; max-width: 260px; line-height: 1.6;
         }
-
-        /* ===== TIMELINE NOTE ===== */
-        .timeline-note {
-            margin-top: 3rem;
-            color: rgba(255,255,255,0.2);
-            font-size: 0.9rem;
-            letter-spacing: 3px;
+        .overlay-btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700; font-size: 0.85rem; letter-spacing: 0.12em; text-transform: uppercase;
+            color: #000;
+            background: linear-gradient(135deg, var(--cyan), var(--purple));
+            border: none; border-radius: 100px;
+            padding: 12px 32px; cursor: pointer;
+            transition: all 0.2s;
         }
+        .overlay-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(6,214,199,0.3); }
+        .overlay-score-box {
+            display: flex; gap: 28px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border);
+            border-radius: 12px; padding: 14px 24px;
+        }
+        .ov-score { text-align: center; }
+        .ov-num {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.6rem; font-weight: 700; color: var(--yellow); line-height: 1;
+        }
+        .ov-lbl { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--dimmer); margin-top: 3px; }
 
-        /* ===== MOBILE OPTIMIZATION ===== */
+        /* ── CONTROLS ── */
+        .game-controls {
+            padding: 16px 28px 20px;
+            border-top: 1px solid var(--border);
+        }
+        .controls-top {
+            display: flex; align-items: center; justify-content: space-between;
+            flex-wrap: wrap; gap: 12px; margin-bottom: 16px;
+        }
+        .controls-hint {
+            font-size: 0.78rem; color: var(--dimmer);
+        }
+        .controls-hint kbd {
+            display: inline-block;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid var(--border-bright);
+            border-radius: 5px;
+            padding: 2px 7px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--text);
+            margin: 0 2px;
+        }
+        .ctrl-btns { display: flex; gap: 8px; }
+        .ctrl-btn {
+            display: inline-flex; align-items: center; gap: 6px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            color: var(--muted);
+            padding: 7px 16px; border-radius: 100px; cursor: pointer;
+            transition: all 0.2s;
+        }
+        .ctrl-btn:hover { background: rgba(255,255,255,0.09); color: var(--text); border-color: var(--border-bright); }
+        .ctrl-btn.primary { color: var(--cyan); border-color: rgba(6,214,199,0.3); background: rgba(6,214,199,0.06); }
+        .ctrl-btn.primary:hover { background: rgba(6,214,199,0.12); }
+
+        /* mobile d-pad */
+        .dpad {
+            display: none;
+            flex-direction: column; align-items: center; gap: 4px;
+            margin: 0 auto;
+        }
+        .dpad-row { display: flex; gap: 4px; }
+        .dpad-btn {
+            width: 52px; height: 52px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; color: var(--muted);
+            cursor: pointer; user-select: none; -webkit-user-select: none;
+            transition: all 0.1s;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .dpad-btn:active { background: rgba(6,214,199,0.15); color: var(--cyan); border-color: rgba(6,214,199,0.3); transform: scale(0.94); }
+        .dpad-center { width: 52px; height: 52px; background: transparent; border: none; }
+
         @media (max-width: 700px) {
-            .coming-soon-card {
-                padding: 3rem 2rem;
-            }
-            
-            .coming-soon {
-                font-size: 3.5rem;
-                letter-spacing: 6px;
-            }
-            
-            .icon-large {
-                font-size: 4rem;
-            }
-            
-            .badge {
-                padding: 8px 20px;
-                font-size: 0.8rem;
-                letter-spacing: 2px;
-            }
-            
-            .message {
-                font-size: 1rem;
-            }
-            
-            .back-btn {
-                padding: 15px 35px;
-                font-size: 1rem;
-            }
-            
-            .line-top, .line-bottom {
-                display: none;
-            }
+            .dpad { display: flex; }
+            .controls-hint { display: none; }
         }
 
-        @media (max-width: 480px) {
-            .coming-soon {
-                font-size: 2.5rem;
-                letter-spacing: 4px;
-            }
-            
-            .coming-soon-card {
-                padding: 2rem 1.5rem;
-            }
+        /* ── FOOTER NOTE ── */
+        .footer-note {
+            width: 100%; max-width: 900px;
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.75rem; letter-spacing: 0.08em; color: var(--dimmer);
         }
+        .footer-note a { color: var(--orange); text-decoration: none; }
+        .footer-note a:hover { text-decoration: underline; }
+
+        /* ── ANIMATIONS ── */
+        .fade-up { opacity: 0; transform: translateY(20px); animation: fadeUp 0.6s ease forwards; }
+        @keyframes fadeUp { to { opacity: 1; transform: none; } }
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+        .delay-5 { animation-delay: 0.55s; }
     </style>
 </head>
 <body>
-    <!-- SIMPLE BACKGROUND -->
-    <div class="bg-glow"></div>
-    <div class="dot-pattern"></div>
-    
-    <!-- CLEAN LINES -->
-    <div class="line line-top"></div>
-    <div class="line line-bottom"></div>
+<div class="bg-layer"></div>
+<div class="noise"></div>
 
-    <!-- CURSOR GLOW -->
-    <div class="cursor-glow"></div>
+<div class="page">
 
-    <!-- MAIN COMING SOON CARD -->
-    <div class="coming-soon-card">
-        <!-- BIG ICON -->
-        <div class="icon-large">
-            <i class="fas fa-hourglass-half"></i>
-        </div>
-        
-        <!-- BIG BOLD COMING SOON -->
-        <h1 class="coming-soon">COMING SOON</h1>
-        
-        <!-- UNDER CONSTRUCTION BADGE -->
-        <div class="badge">
-            <i class="fas fa-code"></i> UNDER CONSTRUCTION <i class="fas fa-paint-brush"></i>
-        </div>
-        
-        <!-- SIMPLE MESSAGE -->
-        <p class="message">
-            We're working hard to bring you something amazing.<br>
-            Stay tuned for updates.
+    <!-- NAV -->
+    <nav class="nav fade-up">
+        <a href="index.html" class="nav-logo">XEET<span>OPIA</span></a>
+        <a href="index.html" class="back-link"><i class="fas fa-arrow-left"></i> Back Home</a>
+    </nav>
+
+    <!-- TOP -->
+    <div class="top-section fade-up delay-1">
+        <div class="eyebrow"><span></span> Under Construction</div>
+        <h1 class="main-title">COMING<br><span class="accent">SOON.</span></h1>
+        <p class="subtitle">
+            Something new is being built here. While you wait — there's a game below. No excuses to leave.
         </p>
-        
-        <!-- SIMPLE PROGRESS -->
-        <div class="progress-container">
-            <div class="progress-bar"></div>
-        </div>
-        
-        <!-- CLEAN BACK BUTTON -->
-        <a href="index.html" class="back-btn">
-            <i class="fas fa-arrow-left"></i> 
-            BACK TO HOME
-        </a>
-        
-        <!-- SUBTLE TIMELINE -->
-        <div class="timeline-note">
-            ✦  launching soon  ✦
+        <div class="progress-row">
+            <span class="progress-label">BUILD PROGRESS</span>
+            <div class="progress-track"><div class="progress-fill"></div></div>
+            <span class="progress-pct">68%</span>
         </div>
     </div>
 
-    <script>
-        (function() {
-            // SMOOTH CURSOR GLOW
-            const glow = document.querySelector(".cursor-glow");
-            let mouseX = 0, mouseY = 0;
-            let currentX = 0, currentY = 0;
-            
-            document.addEventListener("mousemove", e => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-            });
-            
-            function animateGlow() {
-                currentX += (mouseX - currentX) * 0.08;
-                currentY += (mouseY - currentY) * 0.08;
-                glow.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) translate(-50%, -50%)`;
-                requestAnimationFrame(animateGlow);
+    <!-- DIVIDER -->
+    <div class="divider fade-up delay-2">
+        <div class="divider-line"></div>
+        <div class="divider-text">WHILE YOU WAIT — <span>PLAY SNAKE</span></div>
+        <div class="divider-line"></div>
+    </div>
+
+    <!-- GAME -->
+    <div class="game-section fade-up delay-3">
+        <div class="game-card">
+
+            <div class="game-header">
+                <div class="game-title-row">
+                    <div class="game-icon"><i class="fas fa-gamepad"></i></div>
+                    <div>
+                        <div class="game-name">XEET SNAKE</div>
+                        <div style="font-size:0.7rem;color:var(--dimmer);margin-top:1px;">Classic arcade · Earn your bragging rights</div>
+                    </div>
+                    <div class="game-tag">PLAYABLE</div>
+                </div>
+                <div class="score-display">
+                    <div class="score-item">
+                        <div class="score-num" id="scoreDisplay">0</div>
+                        <div class="score-lbl">Score</div>
+                    </div>
+                    <div class="score-item">
+                        <div class="score-num highlight" id="highDisplay">0</div>
+                        <div class="score-lbl">Best</div>
+                    </div>
+                    <div class="score-item">
+                        <div class="score-num" id="levelDisplay">1</div>
+                        <div class="score-lbl">Level</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="canvas-wrapper">
+                <canvas id="gameCanvas"></canvas>
+
+                <!-- START OVERLAY -->
+                <div class="game-overlay" id="startOverlay">
+                    <div class="overlay-icon"><i class="fas fa-gamepad"></i></div>
+                    <div class="overlay-title">XEET SNAKE</div>
+                    <div class="overlay-sub">Collect glowing orbs, grow longer, don't crash. Simple. Addictive.</div>
+                    <button class="overlay-btn" id="startBtn"><i class="fas fa-play"></i> Start Playing</button>
+                </div>
+
+                <!-- GAME OVER OVERLAY -->
+                <div class="game-overlay hidden" id="overOverlay">
+                    <div class="overlay-icon" style="color:var(--pink)"><i class="fas fa-skull"></i></div>
+                    <div class="overlay-title">GAME OVER</div>
+                    <div class="overlay-score-box">
+                        <div class="ov-score"><div class="ov-num" id="finalScore">0</div><div class="ov-lbl">Score</div></div>
+                        <div class="ov-score"><div class="ov-num" id="finalHigh">0</div><div class="ov-lbl">Best</div></div>
+                    </div>
+                    <button class="overlay-btn" id="restartBtn"><i class="fas fa-redo"></i> Play Again</button>
+                </div>
+            </div>
+
+            <div class="game-controls">
+                <div class="controls-top">
+                    <div class="controls-hint">
+                        Use <kbd>↑</kbd><kbd>↓</kbd><kbd>←</kbd><kbd>→</kbd> or <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> to move &nbsp;·&nbsp; <kbd>Space</kbd> to pause
+                    </div>
+                    <div class="ctrl-btns">
+                        <button class="ctrl-btn" id="pauseBtn"><i class="fas fa-pause"></i> Pause</button>
+                        <button class="ctrl-btn primary" id="newGameBtn"><i class="fas fa-redo"></i> New Game</button>
+                    </div>
+                </div>
+
+                <!-- Mobile D-Pad -->
+                <div class="dpad" id="dpad">
+                    <div class="dpad-row">
+                        <div class="dpad-center"></div>
+                        <button class="dpad-btn" data-dir="UP"><i class="fas fa-chevron-up"></i></button>
+                        <div class="dpad-center"></div>
+                    </div>
+                    <div class="dpad-row">
+                        <button class="dpad-btn" data-dir="LEFT"><i class="fas fa-chevron-left"></i></button>
+                        <div class="dpad-center"></div>
+                        <button class="dpad-btn" data-dir="RIGHT"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    <div class="dpad-row">
+                        <div class="dpad-center"></div>
+                        <button class="dpad-btn" data-dir="DOWN"><i class="fas fa-chevron-down"></i></button>
+                        <div class="dpad-center"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="footer-note fade-up delay-5">
+        <a href="index.html">← xeetopia.com</a> &nbsp;·&nbsp; page launching soon &nbsp;·&nbsp; built by xeet
+    </div>
+
+</div>
+
+<script>
+(function() {
+    /* ─── CONFIG ─── */
+    const CELL = 20;
+    const COLORS = {
+        bg: '#0e0e0e',
+        grid: 'rgba(255,255,255,0.025)',
+        snake: ['#06d6c7','#05bfb2','#04a89e'],
+        head: '#06d6c7',
+        headGlow: 'rgba(6,214,199,0.6)',
+        food: '#ff7c2a',
+        foodGlow: 'rgba(255,124,42,0.7)',
+        bonus: '#ffd166',
+        bonusGlow: 'rgba(255,209,102,0.7)',
+        dead: '#ff4dab',
+        text: '#f0f0f0',
+    };
+
+    /* ─── CANVAS SETUP ─── */
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+
+    function sizeCanvas() {
+        const wrapper = canvas.parentElement;
+        const maxW = Math.min(wrapper.clientWidth - 48, 560);
+        const cols = Math.floor(maxW / CELL);
+        const rows = Math.min(cols, 28);
+        canvas.width = cols * CELL;
+        canvas.height = rows * CELL;
+    }
+    sizeCanvas();
+    window.addEventListener('resize', () => { sizeCanvas(); if (state !== 'playing') drawIdle(); });
+
+    function cols() { return canvas.width / CELL; }
+    function rows() { return canvas.height / CELL; }
+
+    /* ─── STATE ─── */
+    let state = 'idle'; // idle | playing | paused | dead
+    let snake, dir, nextDir, food, bonus, bonusTimer;
+    let score, highScore = 0, level;
+    let loopId, frameCount;
+
+    function baseSpeed() { return Math.max(60, 140 - (level - 1) * 12); }
+
+    function init() {
+        const cx = Math.floor(cols() / 2), cy = Math.floor(rows() / 2);
+        snake = [{x: cx, y: cy}, {x: cx-1, y: cy}, {x: cx-2, y: cy}];
+        dir = {x: 1, y: 0};
+        nextDir = {x: 1, y: 0};
+        score = 0; level = 1; frameCount = 0;
+        bonus = null; bonusTimer = 0;
+        spawnFood();
+        updateUI();
+    }
+
+    function spawnFood() {
+        let pos;
+        do { pos = {x: Math.floor(Math.random()*cols()), y: Math.floor(Math.random()*rows())}; }
+        while (snake.some(s => s.x===pos.x && s.y===pos.y));
+        food = pos;
+    }
+
+    function spawnBonus() {
+        if (bonus) return;
+        let pos;
+        do { pos = {x: Math.floor(Math.random()*cols()), y: Math.floor(Math.random()*rows())}; }
+        while (snake.some(s => s.x===pos.x && s.y===pos.y) || (food.x===pos.x && food.y===pos.y));
+        bonus = pos; bonusTimer = 100;
+    }
+
+    /* ─── GAME LOOP ─── */
+    let lastTime = 0;
+    let accum = 0;
+
+    function loop(ts) {
+        if (state !== 'playing') return;
+        const dt = ts - lastTime; lastTime = ts;
+        accum += dt;
+        if (accum >= baseSpeed()) {
+            accum = 0;
+            tick();
+        }
+        draw();
+        loopId = requestAnimationFrame(loop);
+    }
+
+    function tick() {
+        dir = {...nextDir};
+        const head = {x: snake[0].x + dir.x, y: snake[0].y + dir.y};
+
+        // wall wrap
+        head.x = (head.x + cols()) % cols();
+        head.y = (head.y + rows()) % rows();
+
+        // self collision
+        if (snake.some(s => s.x === head.x && s.y === head.y)) {
+            die(); return;
+        }
+
+        snake.unshift(head);
+        frameCount++;
+
+        // food
+        if (head.x === food.x && head.y === food.y) {
+            score += 10 * level;
+            if (score % 50 === 0) spawnBonus();
+            if (snake.length % 5 === 0) level = Math.min(10, level + 1);
+            spawnFood();
+        } else {
+            snake.pop();
+        }
+
+        // bonus
+        if (bonus) {
+            bonusTimer--;
+            if (head.x === bonus.x && head.y === bonus.y) {
+                score += 50 * level; bonus = null;
+            } else if (bonusTimer <= 0) {
+                bonus = null;
             }
-            
-            if (window.innerWidth > 768) {
-                requestAnimationFrame(animateGlow);
-            } else {
-                document.addEventListener("mousemove", e => {
-                    glow.style.left = e.clientX + "px";
-                    glow.style.top = e.clientY + "px";
-                });
-            }
-        })();
-    </script>
+        }
+
+        // occasional bonus spawn
+        if (frameCount % 80 === 0 && !bonus) spawnBonus();
+
+        if (score > highScore) highScore = score;
+        updateUI();
+    }
+
+    function die() {
+        state = 'dead';
+        cancelAnimationFrame(loopId);
+        document.getElementById('finalScore').textContent = score;
+        document.getElementById('finalHigh').textContent = highScore;
+        draw();
+        setTimeout(() => {
+            document.getElementById('overOverlay').classList.remove('hidden');
+        }, 400);
+    }
+
+    /* ─── DRAW ─── */
+    function draw() {
+        const w = canvas.width, h = canvas.height;
+        ctx.clearRect(0, 0, w, h);
+
+        // bg
+        ctx.fillStyle = COLORS.bg;
+        ctx.fillRect(0, 0, w, h);
+
+        // grid
+        ctx.strokeStyle = COLORS.grid;
+        ctx.lineWidth = 0.5;
+        for (let x = 0; x <= cols(); x++) {
+            ctx.beginPath(); ctx.moveTo(x*CELL, 0); ctx.lineTo(x*CELL, h); ctx.stroke();
+        }
+        for (let y = 0; y <= rows(); y++) {
+            ctx.beginPath(); ctx.moveTo(0, y*CELL); ctx.lineTo(w, y*CELL); ctx.stroke();
+        }
+
+        // food
+        drawOrb(food.x, food.y, COLORS.food, COLORS.foodGlow, 6, Date.now());
+
+        // bonus
+        if (bonus) {
+            const alpha = bonusTimer > 20 ? 1 : bonusTimer / 20;
+            ctx.globalAlpha = alpha;
+            drawOrb(bonus.x, bonus.y, COLORS.bonus, COLORS.bonusGlow, 7, Date.now() * 1.5);
+            ctx.globalAlpha = 1;
+        }
+
+        // snake body
+        for (let i = snake.length - 1; i > 0; i--) {
+            const t = 1 - i / snake.length;
+            ctx.fillStyle = state === 'dead' ? COLORS.dead : interpolateColor('#04a89e', '#06d6c7', t);
+            ctx.globalAlpha = state === 'dead' ? 0.6 : (0.4 + t * 0.6);
+            roundRect(snake[i].x*CELL+2, snake[i].y*CELL+2, CELL-4, CELL-4, 4);
+        }
+        ctx.globalAlpha = 1;
+
+        // snake head
+        const hd = snake[0];
+        if (state !== 'dead') {
+            ctx.shadowColor = COLORS.headGlow; ctx.shadowBlur = 14;
+        }
+        ctx.fillStyle = state === 'dead' ? COLORS.dead : COLORS.head;
+        roundRect(hd.x*CELL+1, hd.y*CELL+1, CELL-2, CELL-2, 6);
+        ctx.shadowBlur = 0;
+
+        // eyes
+        if (state !== 'dead') {
+            const ex = hd.x*CELL + CELL/2, ey = hd.y*CELL + CELL/2;
+            ctx.fillStyle = '#000';
+            const e1 = {x: ex + dir.y*4 - dir.x*2, y: ey - dir.x*4 - dir.y*2};
+            const e2 = {x: ex + dir.y*4 + dir.x*2, y: ey + dir.x*4 - dir.y*2};
+            ctx.beginPath(); ctx.arc(e1.x, e1.y, 2, 0, Math.PI*2); ctx.fill();
+            ctx.beginPath(); ctx.arc(e2.x, e2.y, 2, 0, Math.PI*2); ctx.fill();
+        }
+
+        // paused
+        if (state === 'paused') {
+            ctx.fillStyle = 'rgba(10,10,10,0.6)';
+            ctx.fillRect(0, 0, w, h);
+            ctx.fillStyle = '#f0f0f0';
+            ctx.font = 'bold 700 1.4rem Outfit, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('PAUSED', w/2, h/2 - 10);
+            ctx.font = '0.8rem Outfit, sans-serif';
+            ctx.fillStyle = '#888';
+            ctx.fillText('Press Space to resume', w/2, h/2 + 18);
+        }
+    }
+
+    function drawOrb(gx, gy, color, glow, r, t) {
+        const x = gx*CELL + CELL/2, y = gy*CELL + CELL/2;
+        const pulse = Math.sin(t * 0.004) * 2;
+        ctx.shadowColor = glow; ctx.shadowBlur = 16 + pulse;
+        ctx.fillStyle = color;
+        ctx.beginPath(); ctx.arc(x, y, r + pulse * 0.3, 0, Math.PI*2); ctx.fill();
+        ctx.shadowBlur = 0;
+        // shine
+        ctx.fillStyle = 'rgba(255,255,255,0.35)';
+        ctx.beginPath(); ctx.arc(x - r*0.3, y - r*0.3, r*0.35, 0, Math.PI*2); ctx.fill();
+    }
+
+    function roundRect(x, y, w, h, r) {
+        ctx.beginPath();
+        ctx.moveTo(x+r, y);
+        ctx.lineTo(x+w-r, y); ctx.arcTo(x+w, y, x+w, y+r, r);
+        ctx.lineTo(x+w, y+h-r); ctx.arcTo(x+w, y+h, x+w-r, y+h, r);
+        ctx.lineTo(x+r, y+h); ctx.arcTo(x, y+h, x, y+h-r, r);
+        ctx.lineTo(x, y+r); ctx.arcTo(x, y, x+r, y, r);
+        ctx.closePath(); ctx.fill();
+    }
+
+    function interpolateColor(c1, c2, t) {
+        const r1=parseInt(c1.slice(1,3),16), g1=parseInt(c1.slice(3,5),16), b1=parseInt(c1.slice(5,7),16);
+        const r2=parseInt(c2.slice(1,3),16), g2=parseInt(c2.slice(3,5),16), b2=parseInt(c2.slice(5,7),16);
+        const r=Math.round(r1+(r2-r1)*t), g=Math.round(g1+(g2-g1)*t), b=Math.round(b1+(b2-b1)*t);
+        return `rgb(${r},${g},${b})`;
+    }
+
+    function drawIdle() {
+        const w = canvas.width, h = canvas.height;
+        ctx.fillStyle = COLORS.bg; ctx.fillRect(0, 0, w, h);
+        ctx.strokeStyle = COLORS.grid; ctx.lineWidth = 0.5;
+        for (let x = 0; x <= cols(); x++) { ctx.beginPath(); ctx.moveTo(x*CELL,0); ctx.lineTo(x*CELL,h); ctx.stroke(); }
+        for (let y = 0; y <= rows(); y++) { ctx.beginPath(); ctx.moveTo(0,y*CELL); ctx.lineTo(w,y*CELL); ctx.stroke(); }
+    }
+
+    /* ─── UI ─── */
+    function updateUI() {
+        document.getElementById('scoreDisplay').textContent = score;
+        document.getElementById('highDisplay').textContent = highScore;
+        document.getElementById('levelDisplay').textContent = level;
+    }
+
+    /* ─── INPUT ─── */
+    const DIRS = {
+        ArrowUp: {x:0,y:-1}, ArrowDown: {x:0,y:1}, ArrowLeft: {x:-1,y:0}, ArrowRight: {x:1,y:0},
+        w: {x:0,y:-1}, s: {x:0,y:1}, a: {x:-1,y:0}, d: {x:1,y:0},
+        W: {x:0,y:-1}, S: {x:0,y:1}, A: {x:-1,y:0}, D: {x:1,y:0},
+        UP: {x:0,y:-1}, DOWN: {x:0,y:1}, LEFT: {x:-1,y:0}, RIGHT: {x:1,y:0},
+    };
+
+    function changeDir(key) {
+        const d = DIRS[key];
+        if (!d) return;
+        if (d.x !== 0 && dir.x !== 0) return;
+        if (d.y !== 0 && dir.y !== 0) return;
+        nextDir = d;
+    }
+
+    document.addEventListener('keydown', e => {
+        if (['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.key)) e.preventDefault();
+        if (e.key === ' ') { togglePause(); return; }
+        if (state === 'playing') changeDir(e.key);
+    });
+
+    // D-Pad
+    document.querySelectorAll('.dpad-btn').forEach(btn => {
+        btn.addEventListener('pointerdown', e => {
+            e.preventDefault();
+            if (state === 'playing') changeDir(btn.dataset.dir);
+        });
+    });
+
+    // Swipe
+    let touchStart = null;
+    canvas.addEventListener('touchstart', e => { touchStart = {x: e.touches[0].clientX, y: e.touches[0].clientY}; }, {passive:true});
+    canvas.addEventListener('touchend', e => {
+        if (!touchStart) return;
+        const dx = e.changedTouches[0].clientX - touchStart.x;
+        const dy = e.changedTouches[0].clientY - touchStart.y;
+        if (Math.abs(dx) > Math.abs(dy)) {
+            changeDir(dx > 0 ? 'RIGHT' : 'LEFT');
+        } else {
+            changeDir(dy > 0 ? 'DOWN' : 'UP');
+        }
+        touchStart = null;
+    }, {passive:true});
+
+    /* ─── CONTROLS ─── */
+    function startGame() {
+        document.getElementById('startOverlay').classList.add('hidden');
+        document.getElementById('overOverlay').classList.add('hidden');
+        init();
+        state = 'playing';
+        lastTime = performance.now(); accum = 0;
+        loopId = requestAnimationFrame(loop);
+    }
+
+    function togglePause() {
+        if (state === 'playing') {
+            state = 'paused';
+            cancelAnimationFrame(loopId);
+            document.getElementById('pauseBtn').innerHTML = '<i class="fas fa-play"></i> Resume';
+            draw();
+        } else if (state === 'paused') {
+            state = 'playing';
+            document.getElementById('pauseBtn').innerHTML = '<i class="fas fa-pause"></i> Pause';
+            lastTime = performance.now(); accum = 0;
+            loopId = requestAnimationFrame(loop);
+        }
+    }
+
+    document.getElementById('startBtn').addEventListener('click', startGame);
+    document.getElementById('restartBtn').addEventListener('click', startGame);
+    document.getElementById('newGameBtn').addEventListener('click', () => {
+        if (state === 'playing' || state === 'paused') { cancelAnimationFrame(loopId); }
+        startGame();
+    });
+    document.getElementById('pauseBtn').addEventListener('click', togglePause);
+
+    /* ─── INIT ─── */
+    drawIdle();
+})();
+</script>
 </body>
 </html>
