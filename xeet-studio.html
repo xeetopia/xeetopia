@@ -491,6 +491,8 @@ footer{
 }
 @media(max-width:600px){
   nav{padding:16px 5%}
+  .nav-links a:not(.hire-btn){display:none}
+  .hire-btn{padding:7px 14px!important;font-size:10px!important;letter-spacing:1.5px!important;white-space:nowrap}
   section{padding:70px 5%}
   .stats-row{gap:28px}
   .cta-row{flex-direction:column}
@@ -652,14 +654,7 @@ footer{
     </div>
     <div class="vmeta">
       <div>
-        <div class="vt">Cinematic Edit — Sample Project</div>
-        <div class="vd">A showcase of sharp editing rhythm, color grading and cinematic storytelling. Edited by XEET</div>
-        <div class="vtags">
-          <span class="vtag">Cinematic</span>
-          <span class="vtag">Color Grade</span>
-          <span class="vtag">YouTube</span>
-          <span class="vtag">Storytelling</span>
-        </div>
+        <div class="vt">I made this intro from a raw clip of "Abhay PS Rajawat" Youtube channel</div>
       </div>
       <a href="https://youtu.be/EUQy7JQjaXo" target="_blank" class="vlink">Watch on YouTube</a>
     </div>
@@ -669,40 +664,39 @@ footer{
   <div class="more-label fi">Long-form Projects</div>
   <div class="longform-grid fi">
     <!-- LF Slot 1 -->
-    <div class="lf-card" onclick="loadVideo('EUQy7JQjaXo','Cinematic Edit — Sample Project')">
+    <div class="lf-card" onclick="loadVideo('EUQy7JQjaXo','I made this intro from a raw clip of &quot;Abhay PS Rajawat&quot; Youtube channel')">
       <div class="lf-thumb">
-        <img src="https://img.youtube.com/vi/EUQy7JQjaXo/mqdefault.jpg"
+        <img src="https://img.youtube.com/vi/EUQy7JQjaXo/maxresdefault.jpg"
              onerror="this.src='https://img.youtube.com/vi/EUQy7JQjaXo/hqdefault.jpg'" alt="">
         <div class="lf-play"></div>
       </div>
       <div class="lf-info">
         <div class="lf-num">01</div>
-        <div class="lf-title">Cinematic Edit — Sample Project</div>
-        <div class="lf-tags"><span class="lf-tag">Cinematic</span><span class="lf-tag">YouTube</span></div>
+        <div class="lf-title">I made this intro from a raw clip of "Abhay PS Rajawat" Youtube channel</div>
       </div>
     </div>
     <!-- LF Slot 2 -->
-    <div class="lf-card" onclick="loadVideo('iF_IOs7IVpA','YouTube Long-form Edit')">
+    <div class="lf-card" onclick="loadVideo('iF_IOs7IVpA','I made a simple music synced cinematic fast edit.')">
       <div class="lf-thumb">
-        <img src="https://img.youtube.com/vi/iF_IOs7IVpA/mqdefault.jpg"
-             onerror="this.src='https://img.youtube.com/vi/iF_IOs7IVpA/hqdefault.jpg'" alt="">
+        <img src="https://img.youtube.com/vi/iF_IOs7IVpA/hqdefault.jpg"
+             onerror="this.src='https://img.youtube.com/vi/iF_IOs7IVpA/mqdefault.jpg'" alt="">
         <div class="lf-play"></div>
       </div>
       <div class="lf-info">
         <div class="lf-num">02</div>
-        <div class="lf-title">YouTube Long-form Edit</div>
-        <div class="lf-tags"><span class="lf-tag">YouTube</span><span class="lf-tag">Vlog</span></div>
+        <div class="lf-title">I made a simple music synced cinematic fast edit.</div>
       </div>
     </div>
-    <!-- LF Slot 3 — Placeholder -->
-    <div class="lf-card" style="cursor:default">
+    <!-- LF Slot 3 -->
+    <div class="lf-card" onclick="loadVideo('UPA-jVua5Y4','I made a short film for the 1st time and edited it myself, although the camera quality is not my fault but I didn\'t compromised on the Audio.')">
       <div class="lf-thumb">
-        <div class="lf-thumb-ph">Coming Soon</div>
+        <img src="https://img.youtube.com/vi/UPA-jVua5Y4/maxresdefault.jpg"
+             onerror="this.src='https://img.youtube.com/vi/UPA-jVua5Y4/hqdefault.jpg'" alt="">
+        <div class="lf-play"></div>
       </div>
       <div class="lf-info">
         <div class="lf-num">03</div>
-        <div class="lf-title">Brand / Commercial Edit</div>
-        <div class="lf-tags"><span class="lf-tag">Brand</span><span class="lf-tag">Ad</span></div>
+        <div class="lf-title">I made a short film for the 1st time and edited it myself, although the camera quality is not my fault but I didn't compromised on the Audio.</div>
       </div>
     </div>
   </div>
@@ -713,7 +707,7 @@ footer{
     <!-- Short Slot 1 -->
     <div class="short-card" onclick="loadVideo('b-dToA01n8o','Short Edit #1')">
       <div class="short-thumb">
-        <img src="https://img.youtube.com/vi/b-dToA01n8o/mqdefault.jpg"
+        <img src="https://img.youtube.com/vi/b-dToA01n8o/maxresdefault.jpg"
              onerror="this.src='https://img.youtube.com/vi/b-dToA01n8o/hqdefault.jpg'" alt="">
         <div class="short-play"></div>
       </div>
@@ -725,7 +719,7 @@ footer{
     <!-- Short Slot 2 -->
     <div class="short-card" onclick="loadVideo('D6oOaJIY9NY','Short Edit #2')">
       <div class="short-thumb">
-        <img src="https://img.youtube.com/vi/D6oOaJIY9NY/mqdefault.jpg"
+        <img src="https://img.youtube.com/vi/D6oOaJIY9NY/maxresdefault.jpg"
              onerror="this.src='https://img.youtube.com/vi/D6oOaJIY9NY/hqdefault.jpg'" alt="">
         <div class="short-play"></div>
       </div>
@@ -734,30 +728,39 @@ footer{
         <div class="short-title">Short Edit #2</div>
       </div>
     </div>
-    <!-- Short Slot 3 — Placeholder -->
-    <div class="short-card" style="cursor:default">
+    <!-- Short Slot 3 — REPLACE: swap 'O6Iw5B_hzkc' with your YouTube Shorts ID -->
+    <div class="short-card" onclick="loadVideo('O6Iw5B_hzkc','Short Edit #3')">
       <div class="short-thumb">
-        <div class="short-thumb-ph">Coming Soon</div>
+        <img src="https://img.youtube.com/vi/O6Iw5B_hzkc/maxresdefault.jpg"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="">
+        <div class="short-thumb-ph" style="display:none">Coming Soon</div>
+        <div class="short-play"></div>
       </div>
       <div class="short-info">
         <div class="short-num">03</div>
         <div class="short-title">Short Edit #3</div>
       </div>
     </div>
-    <!-- Short Slot 4 — Placeholder -->
-    <div class="short-card" style="cursor:default">
+    <!-- Short Slot 4 — REPLACE: swap 'SHORTID_04' with your YouTube Shorts ID -->
+    <div class="short-card" onclick="loadVideo('SHORTID_04','Short Edit #4')">
       <div class="short-thumb">
-        <div class="short-thumb-ph">Coming Soon</div>
+        <img src="https://img.youtube.com/vi/SHORTID_04/maxresdefault.jpg"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="">
+        <div class="short-thumb-ph" style="display:none">Coming Soon</div>
+        <div class="short-play"></div>
       </div>
       <div class="short-info">
         <div class="short-num">04</div>
         <div class="short-title">Short Edit #4</div>
       </div>
     </div>
-    <!-- Short Slot 5 — Placeholder -->
-    <div class="short-card" style="cursor:default">
+    <!-- Short Slot 5 — REPLACE: swap 'SHORTID_05' with your YouTube Shorts ID -->
+    <div class="short-card" onclick="loadVideo('SHORTID_05','Short Edit #5')">
       <div class="short-thumb">
-        <div class="short-thumb-ph">Coming Soon</div>
+        <img src="https://img.youtube.com/vi/SHORTID_05/maxresdefault.jpg"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" alt="">
+        <div class="short-thumb-ph" style="display:none">Coming Soon</div>
+        <div class="short-play"></div>
       </div>
       <div class="short-info">
         <div class="short-num">05</div>
@@ -774,7 +777,7 @@ footer{
     <div class="stag fi">Get In Touch</div>
     <h2 class="ch fi">LET'S<br>CREATE.</h2>
     <p class="cs fi">Have a project? I'd love to hear about it. Drop me a message and let's build something great.</p>
-    <a href="mailto:goxeet@gmail.com" class="cemail fi"><span class="__cf_email__" data-cfemail="43040c1b0606061703040e020a0f6d000c0e">email&#160;- goxeet@gmail.com</span></a>
+    <a href="mailto:goxeet@gmail.com" class="cemail fi">goxeet@gmail.com</a>
     <div class="socials fi">
       <a href="https://instagram.com/xeetstudio" class="soc" title="Instagram">
         <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
@@ -862,7 +865,7 @@ function loadVideo(videoId, title){
 }
 
 function playFeat(){
-  loadVideo("EUQy7JQjaXo","Cinematic Edit — Sample Project");
+  loadVideo("EUQy7JQjaXo","I made this intro from a raw clip of \"Abhay PS Rajawat\" Youtube channel");
 }</script>
 </body>
 </html>
